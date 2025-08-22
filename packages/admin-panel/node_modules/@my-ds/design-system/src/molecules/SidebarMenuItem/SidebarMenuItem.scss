@@ -1,0 +1,68 @@
+// ۱. این خط برای دسترسی به متغیرهای شما ضروری است
+@use "../../styles" as *;
+
+.sidebar-menu-item {
+  &__trigger {
+    display: flex;
+    align-items: center;
+    padding: $spacing-3 $spacing-4;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: $color-text-secondary;
+
+    &:hover {
+      background-color: $color-bg-surface-hover;
+      color: $color-text-primary;
+    }
+  }
+
+  &--active > &__trigger {
+    // ۲. از متغیر موجود $color-bg-surface-hover استفاده می‌کنیم
+    background-color: $color-bg-surface-hover;
+    color: $color-brand-primary;
+
+    .sidebar-menu-item__icon {
+      color: $color-brand-primary;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    margin-inline-end: $spacing-4;
+    transition: color 0.2s ease;
+  }
+
+  &__label-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.3s ease, width 0.3s ease;
+
+    &--expanded {
+      opacity: 1;
+      width: auto;
+    }
+  }
+
+  &__chevron {
+    transition: transform 0.3s ease;
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    padding-inline-start: $spacing-4;
+
+    &--open {
+      max-height: 1000px;
+    }
+  }
+}

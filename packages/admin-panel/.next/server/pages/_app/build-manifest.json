@@ -6,18 +6,18 @@
   "rootMainFiles": [],
   "pages": {
     "/_app": [
-      "static/chunks/398e6_next_dist_compiled_next-devtools_index_ee0a86bd.js",
-      "static/chunks/398e6_next_dist_compiled_58f6078c._.js",
-      "static/chunks/398e6_next_dist_shared_lib_2be2be2e._.js",
-      "static/chunks/398e6_next_dist_client_6b58f91b._.js",
-      "static/chunks/398e6_next_dist_508373c9._.js",
-      "static/chunks/398e6_next_app_2dd3f87c.js",
-      "static/chunks/[next]_entry_page-loader_ts_7357526a._.js",
-      "static/chunks/2798f_react-dom_e726d6ba._.js",
-      "static/chunks/c7ca2__pnpm_07d20579._.js",
-      "static/chunks/[root-of-the-server]__153f52df._.js",
-      "static/chunks/3bf78_parent-monorepo_my-monorepo_packages_admin-panel_pages__app_2da965e7._.js",
-      "static/chunks/75506_parent-monorepo_my-monorepo_packages_admin-panel_pages__app_4aee4451._.js"
+      "static/chunks/d1492_next_dist_compiled_next-devtools_index_06d7fe33.js",
+      "static/chunks/d1492_next_dist_compiled_587efc07._.js",
+      "static/chunks/d1492_next_dist_shared_lib_0f1ad20f._.js",
+      "static/chunks/d1492_next_dist_client_e45de8eb._.js",
+      "static/chunks/d1492_next_dist_4ac8e8eb._.js",
+      "static/chunks/d1492_next_app_4e026b3e.js",
+      "static/chunks/[next]_entry_page-loader_ts_2fb2b1e0._.js",
+      "static/chunks/b437c_react-dom_cd990a1f._.js",
+      "static/chunks/46fdc__pnpm_0c65fb31._.js",
+      "static/chunks/[root-of-the-server]__f98090e1._.js",
+      "static/chunks/Frontend-Dev_main-parent_packages_admin-panel_pages__app_2da965e7._.js",
+      "static/chunks/turbopack-Frontend-Dev_main-parent_packages_admin-panel_pages__app_5c6365f8._.js"
     ]
   },
   "ampFirstPages": []

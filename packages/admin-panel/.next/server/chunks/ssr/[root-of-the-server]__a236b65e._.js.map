@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Raven/Frontend-Dev/main-parent/packages/admin-panel/src/app/page.tsx"],"sourcesContent":["import { IconButton } from \"@my-ds/design-system\";\nimport {  BackIcon, NotificationIcon } from \"@my-ds/design-system\";\n\n\nexport default function Example() {\n  return (\n    <div style={{ display: \"flex\", gap: \"1rem\" }}>\n      <IconButton icon={<BackIcon />} size=\"md\" variant=\"default\" onClick={() => window.history.back()} />\n      <IconButton icon={<NotificationIcon />} size=\"md\" variant=\"primary\" />\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;;;;;;;;;AAIe,SAAS;IACtB,qBACE,kYAAC;QAAI,OAAO;YAAE,SAAS;YAAQ,KAAK;QAAO;;0BACzC,kYAAC;gBAAW,oBAAM,kYAAC;;;;;gBAAa,MAAK;gBAAK,SAAQ;gBAAU,SAAS,IAAM,OAAO,OAAO,CAAC,IAAI;;;;;;0BAC9F,kYAAC;gBAAW,oBAAM,kYAAC;;;;;gBAAqB,MAAK;gBAAK,SAAQ;;;;;;;;;;;;AAGhE","debugId":null}}]
+}

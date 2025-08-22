@@ -1,0 +1,64 @@
+/* packages/design-system/src/atoms/IconButton/IconButton.scss */
+
+// وارد کردن تمام توکن‌ها (رنگ‌ها، فاصله‌ها، شعاع‌ها و ...)
+@use "../../styles" as *;
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  // استفاده از توکن استاتیک برای شعاع
+  border-radius: $radius-full;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  // استفاده از توکن‌های استاتیک برای سایز
+  &--sm {
+    width: 32px;
+    height: 32px;
+    font-size: $font-size-base;
+  }
+  &--md {
+    width: 40px;
+    height: 40px;
+    font-size: $font-size-xl;
+  }
+  &--lg {
+    width: 48px;
+    height: 48px;
+    font-size: $font-size-2x;
+  }
+
+  // --- استفاده از متغیرهای رنگی داینامیک ---
+
+  &--default {
+    background-color: transparent;
+    color: $color-text-primary; // ✨ اصلاح شد: استفاده از متغیر Sass
+
+    &:hover {
+      background-color: $color-bg-surface-hover; // ✨ اصلاح شد: استفاده از متغیر Sass
+    }
+  }
+
+  &--primary {
+    background-color: $color-brand-primary; // ✨ اصلاح شد: استفاده از متغیر Sass
+    color: $color-text-on-brand; // ✨ اصلاح شد: استفاده از متغیر Sass
+
+
+  }
+
+  &--secondary {
+    background-color: $color-brand-secondary; // ✨ اصلاح شد: استفاده از متغیر Sass
+    color: $color-text-on-brand; // ✨ اصلاح شد: استفاده از متغیر Sass
+  }
+
+  &--danger {
+    background-color: $color-utility-error; // ✨ اصلاح شد: استفاده از متغیر Sass
+    color: $color-text-on-brand; // ✨ اصلاح شد: استفاده از متغیر Sass
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

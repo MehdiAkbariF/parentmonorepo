@@ -1,0 +1,47 @@
+@use "../../styles" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-4;
+  height: 4rem;
+  background-color: $color-bg-surface;
+  border-bottom: 1px solid $color-border-primary;
+
+  &__start,
+  &__center,
+  &__end {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__start { justify-content: start; }
+  &__center { justify-content: center; }
+  &__end { justify-content: end; }
+
+  &__mobile-logo {
+    display: none; // در دسکتاپ مخفی است
+    cursor: pointer;
+    color: $color-brand-primary;
+    font-size: 1.75rem;
+
+    @media (max-width: $breakpoint-lg) {
+      display: flex; // در موبایل نمایش داده می‌شود
+    }
+  }
+
+  &__back-button {
+    // دکمه بازگشت در موبایل مخفی می‌شود تا جا برای لوگو باشد
+    @media (max-width: $breakpoint-lg) {
+      display: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+  }
+}

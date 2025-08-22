@@ -1,0 +1,187 @@
+/* [project]/Frontend-Dev/main-parent/packages/design-system/dist/index.scss.css [app-client] (css) */
+:root, .light {
+  --color-brand-primary: #007aff;
+  --color-brand-secondary: #5ac8fa;
+  --color-brand-accent: #ff9500;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-text-placeholder: #adb5bd;
+  --color-text-on-brand: #fff;
+  --color-text-link: #007aff;
+  --color-bg-body: #f8f9fa;
+  --color-bg-surface: #fff;
+  --color-bg-surface-hover: #f8f9fa;
+  --color-bg-secondary: #f1f5f9;
+  --color-bg-accent: #e0f2fe;
+  --color-border-primary: #dee2e6;
+  --color-border-secondary: #e9ecef;
+  --color-utility-success: #34c759;
+  --color-utility-error: #ff3b30;
+  --color-utility-warning: #fc0;
+  --color-utility-info: #007aff;
+  --color-heading: #212529;
+}
+
+.dark {
+  --color-brand-primary: #3b82f6;
+  --color-brand-secondary: #5ac8fa;
+  --color-brand-accent: #ff9500;
+  --color-text-primary: #f8f9fa;
+  --color-text-secondary: #ced4da;
+  --color-text-placeholder: #adb5bd;
+  --color-text-on-brand: #fff;
+  --color-text-link: #5ac8fa;
+  --color-bg-body: #000;
+  --color-bg-surface: #212529;
+  --color-bg-surface-hover: #343a40;
+  --color-bg-secondary: #1e293b;
+  --color-bg-accent: #0c4a6e;
+  --color-border-primary: #343a40;
+  --color-border-secondary: #495057;
+  --color-utility-success: #34c759;
+  --color-utility-error: #ff3b30;
+  --color-utility-warning: #fc0;
+  --color-utility-info: #007aff;
+  --color-heading: #f8f9fa;
+}
+
+.light, :root, .dark {
+  background: var(--color-bg-body);
+  color: var(--color-text-primary);
+}
+
+.icon-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  transition: background-color .2s, transform .1s;
+  display: inline-flex;
+}
+
+.icon-button--sm {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+}
+
+.icon-button--md {
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+}
+
+.icon-button--lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+}
+
+.icon-button--default {
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.icon-button--default:hover {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.icon-button--primary {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-on-brand);
+}
+
+.icon-button--primary:hover {
+  background-color: var(--color-brand-primary-hover);
+}
+
+.icon-button--secondary {
+  background-color: var(--color-brand-secondary);
+  color: var(--color-text-on-brand);
+}
+
+.icon-button--danger {
+  background-color: var(--color-utility-error);
+  color: var(--color-text-on-brand);
+}
+
+.icon-button:active {
+  transform: scale(.95);
+}
+
+.theme-switch {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: .375rem;
+  padding: .5rem;
+  font-size: 2.5rem;
+  line-height: 1;
+  transition: transform .2s;
+}
+
+.theme-switch:hover {
+  transform: scale(1.15);
+}
+
+.label {
+  color: var(--color-text-primary);
+  font-family: Vazirmatn, sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.label--secondary {
+  color: var(--color-text-secondary);
+}
+
+.label--error {
+  color: var(--color-utility-error);
+}
+
+.label--disabled {
+  color: var(--color-text-placeholder);
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.label--with-icon {
+  align-items: center;
+  gap: .5rem;
+  display: inline-flex;
+}
+
+.label--xs {
+  font-size: .75rem;
+}
+
+.label--sm {
+  font-size: .875rem;
+}
+
+.label--md {
+  font-size: 1rem;
+}
+
+.label--lg {
+  font-size: 1.125rem;
+}
+
+.label--xl {
+  font-size: 1.25rem;
+}
+
+.label--2x {
+  font-size: 1.5rem;
+}
+
+.label--3x {
+  font-size: 1.875rem;
+}
+
+.label--4x {
+  font-size: 2.25rem;
+}
+
+/*# sourceMappingURL=Frontend-Dev_main-parent_packages_design-system_dist_index_scss_474a6b01.css.map*/
