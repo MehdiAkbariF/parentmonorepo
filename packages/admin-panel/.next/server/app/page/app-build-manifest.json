@@ -1,0 +1,22 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/398e6_next_dist_21c11aa0._.js",
+      "static/chunks/3cf5d_my-monorepo_packages_admin-panel_src_app_favicon_ico_mjs_651ee4f5._.js",
+      "static/chunks/[root-of-the-server]__8348fb23._.css",
+      "static/chunks/3bf78_parent-monorepo_my-monorepo_packages_admin-panel_src_app_layout_tsx_1cd10591._.js",
+      "static/chunks/398e6_next_dist_client_components_builtin_global-error_d0802a99.js",
+      "static/chunks/Frontend-Dev_parent-monorepo_my-monorepo_3b02ccf9._.js",
+      "static/chunks/3bf78_parent-monorepo_my-monorepo_packages_admin-panel_src_app_page_tsx_d0802a99._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_e6cdfa6b._.js",
+      "static/chunks/398e6_next_dist_compiled_react-dom_d2b20631._.js",
+      "static/chunks/398e6_next_dist_compiled_next-devtools_index_52ff309b.js",
+      "static/chunks/398e6_next_dist_compiled_54b3927c._.js",
+      "static/chunks/398e6_next_dist_client_b52cbb47._.js",
+      "static/chunks/398e6_next_dist_203929f6._.js",
+      "static/chunks/e086e_@swc_helpers_cjs_230215ae._.js",
+      "static/chunks/Frontend-Dev_parent-monorepo_my-monorepo_packages_admin-panel_a0ff3932._.js",
+      "static/chunks/turbopack-Frontend-Dev_parent-monorepo_my-monorepo_packages_admin-panel_d30489cf._.js"
+    ]
+  }
+}

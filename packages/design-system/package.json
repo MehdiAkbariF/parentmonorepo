@@ -1,0 +1,27 @@
+{
+  "name": "@my-ds/design-system",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "src"],
+  "sideEffects": [
+    "**/*.scss",
+    "dist/index.css"
+  ],
+  "scripts": {
+    "build:ts": "tsc -p tsconfig.json",
+    "build:css": "sass src/styles/index.scss dist/index.css",
+    "build": "pnpm run build:ts && pnpm run build:css",
+    "watch:css": "sass --watch src/styles/index.scss dist/index.css",
+    "dev": "tsc -w -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "sass": "^1.77.0"
+  }
+}
