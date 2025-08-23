@@ -2,11 +2,10 @@
 
 .table-wrapper {
   width: 100%;
-  overflow-x: auto; // برای اسکرول افقی در صورت نیاز (روی دسکتاپ‌های کوچک)
+  overflow-x: auto;
   border: 1px solid $color-border-primary;
   border-radius: $radius-lg;
   background-color: $color-bg-surface;
-  direction: rtl;
 }
 
 .table {
@@ -16,7 +15,7 @@
   &__head {
     th {
       padding: $spacing-4 $spacing-6;
-      text-align: start; // برای RTL/LTR
+      text-align: start;
       font-weight: $font-weight-semi-bold;
       color: $color-text-secondary;
       background-color: $color-bg-body;
@@ -39,6 +38,17 @@
       padding: $spacing-4 $spacing-6;
       color: $color-text-primary;
       vertical-align: middle;
+
+      // استایل جدید برای سلول عملیات در دسکتاپ
+      &.table__cell--actions {
+        width: 1%;
+        white-space: nowrap;
+
+        @media (max-width: $breakpoint-md) {
+          width: 100%;
+          white-space: normal;
+        }
+      }
     }
   }
 }
@@ -49,16 +59,15 @@
   color: $color-text-secondary;
 }
 
-// --- استایل‌های واکنش‌گرا (Mobile First) ---
+// استایل‌های واکنش‌گرا
 @media (max-width: $breakpoint-md) {
   .table {
     &__head {
-      // هدر اصلی را در موبایل مخفی می‌کنیم
       display: none;
     }
 
     &__body, tr, td {
-      display: block; // عناصر را زیر هم قرار می‌دهیم
+      display: block;
       width: 100%;
     }
 
@@ -67,18 +76,15 @@
       border: 1px solid $color-border-primary;
       border-radius: $radius-md;
       
-      &:last-child {
-        margin-bottom: 0;
-      }
+      &:last-child { margin-bottom: 0; }
     }
     
     td {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      text-align: end; // مقدار در سمت چپ (در RTL)
+      text-align: end;
 
-      // لیبل ستون را از data-label گرفته و نمایش می‌دهیم
       &::before {
         content: attr(data-label);
         font-weight: $font-weight-semi-bold;
@@ -89,6 +95,12 @@
       
       &:not(:last-child) {
         border-bottom: 1px solid $color-border-secondary;
+      }
+
+      // استایل جدید برای سلول عملیات در موبایل
+      &.table__cell--actions {
+        // محتوا (دکمه‌ها) را به انتهای کانتینر می‌چسبانیم
+        justify-content: end;
       }
     }
   }

@@ -1,0 +1,69 @@
+@use "../../styles" as *;
+
+.search-input {
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 320px; // عرض حداکثر برای دسکتاپ
+  }
+  
+  // استایل اصلی input
+  & {
+    width: 100%;
+    height: 40px;
+    padding-inline-start: $spacing-10; // 40px فضا برای آیکون
+    padding-inline-end: $spacing-4;
+    border-radius: $radius-md;
+    border: 1px solid $color-border-primary;
+    background-color: $color-bg-surface;
+    color: $color-text-primary;
+    font-size: $font-size-sm;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: $color-brand-primary;
+      box-shadow: 0 0 0 3px rgba($primary-blue-light, 0.2);
+    }
+
+    &::placeholder {
+      color: $color-text-placeholder;
+    }
+
+    // حذف آیکون "x" پیش‌فرض در input[type=search]
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+
+  // آیکون جستجو
+  &__icon {
+    position: absolute;
+    inset-inline-start: $spacing-4; // 16px از لبه فاصله دارد
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-text-placeholder;
+    pointer-events: none; // اجازه می‌دهد کلیک از روی آیکون عبور کند
+  }
+  
+  // انیمیشن لودر (مشابه ExportButton)
+  &__loader {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+}
+
+// انیمیشن keyframes
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

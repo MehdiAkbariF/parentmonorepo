@@ -1,33 +1,27 @@
-"use client";
-
-import React from "react";
-// ۱. ایمپورت PageHeader حذف شد.
+import React, { ReactNode } from "react";
+// ۱. ایمپورت کردن Breadcrumb و تایپ‌های آن
+import { Breadcrumb, BreadcrumbItem } from "../../../molecules/Breadcrumb/Breadcrumb";
+import { ListPageHeader, ListPageHeaderProps } from "../../../molecules/ListPageHeader/ListPageHeader";
 import { Table, TableProps } from "../../../molecules/Table/Table";
 
-// ۲. این کامپوننت ژنریک است و با هر نوع داده‌ای (T) کار می‌کند
 export interface ListPageLayoutProps<T> {
-  /**
-   * پراپرتی‌های مورد نیاز برای Table (داده‌ها و ستون‌ها)
-   */
+  // ۲. پراپرتی جدید برای هدر لیست
+  listPageHeaderProps: ListPageHeaderProps;
   tableProps: TableProps<T>;
-  /**
-   * وضعیت لودینگ صفحه. اگر true باشد، یک حالت لودینگ نمایش داده می‌شود.
-   */
   isLoading?: boolean;
-  /**
-   * پیام خطا. اگر وجود داشته باشد، یک حالت خطا نمایش داده می‌شود.
-   */
   error?: string | null;
 }
 
 /**
- * ListPageLayout یک الگوی ساده برای نمایش یک جدول با حالت‌های لودینگ و خطا است.
- * این الگو باید داخل یک لی‌آوت اصلی مانند YadakchiAdminLayout قرار بگیرد.
+ * ListPageLayout یک الگوی ساده برای نمایش یک جدول با Breadcrumb،
+ * حالت‌های لودینگ و خطا است.
  */
 export const ListPageLayout = <T extends {}>({
   tableProps,
   isLoading = false,
   error = null,
+  listPageHeaderProps,
+
 }: ListPageLayoutProps<T>) => {
   
   const renderContent = () => {
@@ -44,9 +38,10 @@ export const ListPageLayout = <T extends {}>({
     );
   };
 
-  // ۳. ساختار JSX ساده شد و فقط renderContent را برمی‌گرداند.
   return (
     <div className="list-page-layout">
+      {/* ۲. اگر آیتم‌ها وجود داشتند، Breadcrumb را در بالا نمایش بده */}
+      <ListPageHeader {...listPageHeaderProps} />
       {renderContent()}
     </div>
   );

@@ -1,0 +1,15 @@
+@use "../../styles" as *;
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  // ۱. فاصله پیش‌فرض برای دسکتاپ
+  gap: $spacing-2; // 8px
+
+  // ۲. در سایزهای کوچکتر از md (موبایل)، فاصله را افزایش می‌دهیم
+  @media (max-width: $breakpoint-md) {
+    // می‌توانید هر مقداری که مناسب می‌دانید را انتخاب کنید
+    // مثلاً $spacing-3 (12px) یا $spacing-4 (16px)
+    gap: $spacing-4; // 16px
+  }
+}

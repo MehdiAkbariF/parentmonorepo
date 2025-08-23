@@ -1,0 +1,42 @@
+@use "../../styles" as *;
+
+.breadcrumb {
+  ol {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; // برای صفحات با مسیر طولانی در موبایل
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-sm;
+    
+    // استایل لینک‌ها
+    a {
+      color: $color-text-secondary;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $color-brand-primary;
+      }
+    }
+
+    // استایل آیتم فعلی (آخرین آیتم)
+    &--current {
+      color: $color-text-primary;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &__separator {
+    display: flex;
+    align-items: center;
+    margin-inline: $spacing-2; // فاصله از هر دو طرف
+    color: $color-text-secondary;
+  }
+}
