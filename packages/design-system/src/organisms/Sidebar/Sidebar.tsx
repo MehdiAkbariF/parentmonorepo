@@ -1,30 +1,33 @@
 "use client";
-import React, { useState, useEffect, ReactNode } from "react";
-import { SidebarMenuItem, SidebarMenuItemProps } from "../../molecules/SidebarMenuItem";
 
-// تعریف ساختار یک آیتم منو (این تایپ را export می‌کنیم تا در admin-panel استفاده شود)
+import React, { useState, useEffect, ReactNode } from "react";
+import { SidebarMenuItem } from "../../molecules/SidebarMenuItem";
+import { BsPinAngleFill, BsPinAngle } from "react-icons/bs";
+import { FaTimes } from "react-icons/fa";
+
 export interface SidebarNavItem {
   label: string;
-  icon?: React.FC<any>; // تایپ آیکون
+  icon?: React.FC<any>;
   href?: string;
   submenu?: SidebarNavItem[];
 }
 
-// کامپوننت بازگشتی داخلی برای رندر آیتم‌ها
+// کامپوننت بازگشتی داخلی
 const RecursiveMenuItem = ({
   item,
-  isExpanded,
+  isExpanded, // این isExpanded از والد اصلی می‌آید
   currentPath,
+  renderLink,
   level = 0,
 }: {
   item: SidebarNavItem;
   isExpanded: boolean;
   currentPath: string;
+  renderLink: (href: string, children: ReactNode) => ReactNode;
   level?: number;
 }) => {
   const hasSubmenu = item.submenu && item.submenu.length > 0;
 
-  // تابع کمکی برای تشخیص آیتم فعال
   const isSubmenuActive = (submenu: SidebarNavItem[]): boolean => {
     return submenu.some(subItem => subItem.href === currentPath || (subItem.submenu && isSubmenuActive(subItem.submenu)));
   };
@@ -33,110 +36,126 @@ const RecursiveMenuItem = ({
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(isActiveOrHasActiveChild);
 
   useEffect(() => {
-    if (isActiveOrHasActiveChild) {
-      setIsSubmenuOpen(true);
+    if (isActiveOrHasActiveChild) setIsSubmenuOpen(true);
+    // ✨ یک افکت جدید: اگر سایدبار بسته شد، تمام زیرمنوها را هم ببند
+    if (!isExpanded) {
+        setIsSubmenuOpen(false);
     }
   }, [isExpanded, isActiveOrHasActiveChild]);
 
-  const toggleSubmenu = () => {
-    if (isExpanded) {
-      setIsSubmenuOpen(!isSubmenuOpen);
-    }
-  };
-
+  const toggleSubmenu = () => { if (isExpanded) setIsSubmenuOpen(!isSubmenuOpen); };
   const IconComponent = item.icon;
 
-  // اگر آیتم یک لینک مستقیم است، محتوای داخلی آن را برمی‌گردانیم تا در <Link> قرار گیرد
-  if (item.href) {
-    return (
-      <SidebarMenuItem
-        label={item.label}
-        icon={IconComponent ? <IconComponent /> : undefined}
-        isActive={currentPath === item.href}
-        isExpanded={isExpanded}
-        level={level}
-      />
-    );
-  }
-
-  // اگر آیتم والد یک زیرمنو است
-  return (
+  const menuItemContent = (
     <SidebarMenuItem
       label={item.label}
       icon={IconComponent ? <IconComponent /> : undefined}
-      isActive={isActiveOrHasActiveChild && !isSubmenuOpen}
+      isActive={hasSubmenu ? isActiveOrHasActiveChild && !isSubmenuOpen : currentPath === item.href}
       isExpanded={isExpanded}
       hasSubmenu={hasSubmenu}
       isSubmenuOpen={isSubmenuOpen}
       onClick={toggleSubmenu}
       level={level}
     >
-      {item.submenu?.map((subItem, index) => (
+      {/* ✨ --- تغییر کلیدی و نهایی اینجاست --- */}
+      {/* زیرمنو فقط زمانی رندر می‌شود که سایدبار اصلی باز باشد */}
+      {isExpanded && item.submenu?.map((subItem) => (
         <RecursiveMenuItem
-          key={index}
+          key={subItem.href || subItem.label}
           item={subItem}
           isExpanded={isExpanded}
           currentPath={currentPath}
+          renderLink={renderLink}
           level={level + 1}
         />
       ))}
     </SidebarMenuItem>
   );
+
+  if(item.href) {
+    return renderLink(item.href, menuItemContent);
+  }
+  return menuItemContent;
 };
 
 
-// پراپرتی‌های کامپوننت اصلی Sidebar
+/**
+ * پراپرتی‌های کامپوننت Sidebar
+ */
 export interface SidebarProps {
-  logo?: ReactNode;
   appName?: string;
+  logo?: ReactNode;
   menuItems: SidebarNavItem[];
   footerItems?: SidebarNavItem[];
-  currentPath: string; // مسیر فعلی صفحه
-  isExpanded: boolean; // آیا سایدبار باز است؟
-  // یک رندر پراپ (render prop) برای کامپوننت Link
-  // این کار باعث می‌شود کامپوننت ما مستقل از فریمورک باشد
+  currentPath: string;
+  isExpanded: boolean;
+  isPinned?: boolean;
+  onPinToggle?: () => void;
   renderLink: (href: string, children: ReactNode) => ReactNode;
+  onMobileClose?: () => void;
 }
 
-// کامپوننت اصلی و قابل export
+/**
+ * Sidebar یک کامپوننت ارگانیسم برای نمایش ناوبری اصلی اپلیکیشن است.
+ * این کامپوننت به صورت واکنش‌گرا طراحی شده و از طریق props کنترل می‌شود.
+ */
 export const Sidebar: React.FC<SidebarProps> = ({
-  logo,
   appName,
+  logo,
   menuItems,
   footerItems,
   currentPath,
   isExpanded,
+  isPinned = false,
+  onPinToggle,
   renderLink,
+
+  onMobileClose,
+  
 }) => {
   return (
     <aside className={`sidebar ${isExpanded ? "sidebar--expanded" : ""}`}>
       <div className="sidebar__header">
+         <div className="sidebar__close-button">
+          {onMobileClose && (
+            <button onClick={onMobileClose} aria-label="بستن منو">
+              <FaTimes />
+            </button>
+          )}
+        </div>
         <div className="sidebar__logo">{logo}</div>
         <span className="sidebar__app-name">{appName}</span>
+        <div className="sidebar__pin-button">
+          {onPinToggle && (
+            <button onClick={onPinToggle} aria-label="Pin Sidebar">
+              {isPinned ? <BsPinAngleFill /> : <BsPinAngle />}
+            </button>
+          )}
+        </div>
       </div>
+
       <nav className="sidebar__nav">
-        {menuItems.map((item, index) => {
-          // اگر آیتم href دارد، آن را با renderLink رندر می‌کنیم
-          if(item.href) {
-            return renderLink(
-              item.href, 
-              <RecursiveMenuItem key={index} item={item} isExpanded={isExpanded} currentPath={currentPath} />
-            );
-          }
-          // در غیر این صورت، به صورت عادی رندر می‌کنیم
-          return <RecursiveMenuItem key={index} item={item} isExpanded={isExpanded} currentPath={currentPath} />;
-        })}
+        {menuItems.map((item) => (
+          <RecursiveMenuItem
+            key={item.href || item.label}
+            item={item}
+            isExpanded={isExpanded}
+            currentPath={currentPath}
+            renderLink={renderLink}
+          />
+        ))}
       </nav>
+
       <div className="sidebar__footer">
-        {footerItems?.map((item, index) => {
-          if(item.href) {
-            return renderLink(
-              item.href,
-              <RecursiveMenuItem key={index} item={item} isExpanded={isExpanded} currentPath={currentPath} />
-            );
-          }
-          return <RecursiveMenuItem key={index} item={item} isExpanded={isExpanded} currentPath={currentPath} />;
-        })}
+        {footerItems?.map((item) => (
+          <RecursiveMenuItem
+            key={item.href || item.label}
+            item={item}
+            isExpanded={isExpanded}
+            currentPath={currentPath}
+            renderLink={renderLink}
+          />
+        ))}
       </div>
     </aside>
   );

@@ -8,6 +8,8 @@
   height: 4rem;
   background-color: $color-bg-surface;
   border-bottom: 1px solid $color-border-primary;
+  position: relative;
+  z-index: $z-index-20;
 
   &__start,
   &__center,
@@ -17,31 +19,55 @@
     flex: 1;
   }
 
-  &__start { justify-content: start; }
+  // چیدمان هر بخش با ویژگی‌های منطقی
+  &__start { justify-content: start; gap: $spacing-3; } // فاصله بین اکشن‌ها
   &__center { justify-content: center; }
   &__end { justify-content: end; }
 
-  &__mobile-logo {
-    display: none; // در دسکتاپ مخفی است
-    cursor: pointer;
-    color: $color-brand-primary;
-    font-size: 1.75rem;
+  // --- استایل‌های واکنش‌گرا ---
+
+  &__menu-toggle {
+    @media (min-width: $breakpoint-lg) {
+      display: none; // در دسکتاپ مخفی است
+    }
+  }
+  
+  // اکشن‌های دسکتاپ (نوتیف، تم، پروفایل)
+  &__desktop-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
 
     @media (max-width: $breakpoint-lg) {
-      display: flex; // در موبایل نمایش داده می‌شود
+      display: none; // در موبایل مخفی است
     }
   }
 
-  &__back-button {
-    // دکمه بازگشت در موبایل مخفی می‌شود تا جا برای لوگو باشد
+  // بخش برندینگ موبایل
+  &__brand-mobile {
+    display: none;
+    align-items: center;
+    gap: $spacing-2;
+
+    @media (max-width: $breakpoint-lg) {
+      display: flex;
+    }
+  }
+
+  &__logo-mobile {
+    color: $color-brand-primary;
+    font-size: 1.5rem;
+  }
+
+  &__app-name-mobile {
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+  }
+  
+  // عنوان صفحه دسکتاپ
+  &__title-desktop {
     @media (max-width: $breakpoint-lg) {
       display: none;
     }
-  }
-
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: $spacing-4;
   }
 }

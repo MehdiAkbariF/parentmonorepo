@@ -1,0 +1,24 @@
+@use "../../../styles" as *;
+
+.list-page-layout {
+  // این الگو در نسخه ساده، هیچ استایل اضافه‌ای نیاز ندارد
+  // و فقط به عنوان یک wrapper عمل می‌کند.
+  
+  &__table-container {
+    //
+  }
+
+  &__state {
+    padding: $spacing-12 $spacing-6;
+    text-align: center;
+    color: $color-text-secondary;
+    font-size: $font-size-lg;
+    background-color: $color-bg-surface;
+    border-radius: $radius-lg;
+    border: 1px solid $color-border-primary;
+
+    &--error {
+      color: $color-utility-error;
+    }
+  }
+}

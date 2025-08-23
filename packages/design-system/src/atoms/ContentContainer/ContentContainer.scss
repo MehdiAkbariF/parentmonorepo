@@ -1,0 +1,26 @@
+@use "../../styles" as *;
+
+.content-container {
+  // ۱. عرض کانتینر را ۱۰۰٪ در نظر می‌گیریم
+  width: 100%;
+  
+  // ۲. یک عرض حداکثری برای خوانایی بهتر در دسکتاپ تعریف می‌کنیم
+  //    ما از breakpoint-xl شما (1280px) استفاده می‌کنیم
+  max-width: $breakpoint-2xl;
+  
+  // ۳. برای وسط‌چین کردن کانتینر در صفحه
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  
+  // ۴. پدینگ‌های افقی برای جلوگیری از چسبیدن محتوا به لبه‌ها در موبایل
+  //    ما از توکن‌های spacing شما استفاده می‌کنیم
+  padding-inline-start: $spacing-6; // 24px
+  padding-inline-end: $spacing-6;   // 24px
+
+  // ۵. (اختیاری اما پیشنهادی) در صفحات بزرگتر، می‌توانیم پدینگ را کمتر کنیم
+  //    چون محتوا به لبه‌ها نمی‌رسد.
+  @media (min-width: $breakpoint-sm) {
+    padding-inline-start: $spacing-8; // 32px
+    padding-inline-end: $spacing-8;   // 32px
+  }
+}

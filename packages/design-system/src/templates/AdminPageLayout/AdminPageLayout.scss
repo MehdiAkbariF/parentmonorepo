@@ -1,55 +1,50 @@
 @use "../../styles" as *;
 
 .admin-page-layout {
-  position: relative;
   height: 100vh;
   width: 100vw;
   background-color: $color-bg-body;
   overflow: hidden;
+  position: relative;
+  direction: rtl; // جهت‌دهی به صورت ثابت اینجا تعریف می‌شود
 
-  &--rtl { direction: rtl; }
-  &--ltr { direction: ltr; }
+  // --- Mobile First Layout ---
+  display: flex;
+  flex-direction: column;
 
-  &__sidebar-wrapper {
-    position: fixed; // همیشه ثابت است
-    inset-block-start: 0;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    z-index: $z-index-40;
-    transition: transform 0.3s ease-in-out;
-
-    @media (max-width: $breakpoint-lg) {
-      .admin-page-layout--rtl & { transform: translateX(100%); }
-      .admin-page-layout--ltr & { transform: translateX(-100%); }
-      &--mobile-open { transform: translateX(0); }
-    }
-  }
-
-  &__overlay {
+  &__sidebar {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: $z-index-30;
+    z-index: $z-index-40;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%); // پیش‌فرض برای RTL
     
-    @media (min-width: $breakpoint-lg) {
-      display: none;
+    &--mobile-open {
+      transform: translateX(0);
     }
   }
 
-  &__main {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+  &__header { flex-shrink: 0; z-index: $z-index-20; }
+  &__content { flex-grow: 1; overflow-y: auto; }
+  &__overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); z-index: $z-index-30; }
   
-  &__header {
-    // هدر دیگر نیازی به position ندارد، چون والدش padding می‌گیرد
-    flex-shrink: 0;
-  }
+  // --- Desktop Layout (با CSS Grid) ---
+  @media (min-width: $breakpoint-lg) {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 5rem 1fr; // چیدمان ثابت برای RTL
+    grid-template-areas:
+      "sidebar header"
+      "sidebar content";
+    transition: grid-template-columns 0.3s ease-in-out;
 
-  &__content {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: $spacing-8;
+    &--sidebar-expanded {
+      grid-template-columns: 16rem 1fr;
+    }
+
+    &__sidebar { grid-area: sidebar; position: static; transform: none !important; }
+    &__header { grid-area: header; }
+    &__content { grid-area: content; padding: $spacing-8; }
+    &__overlay { display: none; }
   }
 }

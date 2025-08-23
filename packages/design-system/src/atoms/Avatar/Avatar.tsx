@@ -24,7 +24,7 @@ export interface AvatarProps {
 export const Avatar: React.FC<AvatarProps> = ({
   src,
   alt = "User Avatar",
-  size = "md",
+  size = "sm",
   fallback,
 }) => {
   return (

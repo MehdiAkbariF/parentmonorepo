@@ -1,68 +1,107 @@
-// ۱. این خط برای دسترسی به متغیرهای شما ضروری است
 @use "../../styles" as *;
 
 .sidebar-menu-item {
+  position: relative; // برای خط عمودی زیرمنو
+
   &__trigger {
     display: flex;
     align-items: center;
-    padding: $spacing-3 $spacing-4;
+    padding: $spacing-3 0; // پدینگ 12px عمودی
     border-radius: $radius-md;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease;
+    overflow: hidden;
+
+    // استایل پیش‌فرض برای تمام فرزندان متنی و آیکونی
     color: $color-text-secondary;
 
+    // در حالت هاور، رنگ متن اصلی می‌شود
     &:hover {
       background-color: $color-bg-surface-hover;
+      // .label کلاس رنگی خودش را دارد، پس نیازی به تغییر آن نیست
+      // فقط رنگ آیکون و chevron را تغییر می‌دهیم
       color: $color-text-primary;
     }
   }
 
+  // حالت فعال
   &--active > &__trigger {
-    // ۲. از متغیر موجود $color-bg-surface-hover استفاده می‌کنیم
-    background-color: $color-bg-surface-hover;
-    color: $color-brand-primary;
+    background-color: $color-bg-body;
+    color: $color-brand-primary; // رنگ آیکون و chevron در حالت فعال
 
-    .sidebar-menu-item__icon {
+    // لیبل در حالت فعال، رنگ اصلی برند را می‌گیرد و پررنگ می‌شود
+    .label {
       color: $color-brand-primary;
+      font-weight: $font-weight-semi-bold; // 600
     }
   }
-
-  &__icon {
+  
+  // Wrapper برای آیکون
+  &__icon-wrapper {
     display: flex;
     align-items: center;
-    margin-inline-end: $spacing-4;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 5rem;
+    font-size: 1.25rem;
     transition: color 0.2s ease;
   }
-
-  &__label-wrapper {
+  
+  // Wrapper برای محتوای اصلی (لیبل و chevron)
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-grow: 1;
-    overflow: hidden;
-    white-space: nowrap;
+    // با padding راست (در RTL) فاصله از لبه سایدبار ایجاد می‌کنیم
+    padding-inline-end: $spacing-4;
+    
+    // انیمیشن برای ظاهر شدن
     opacity: 0;
-    width: 0;
-    transition: opacity 0.3s ease, width 0.3s ease;
+    transition: opacity 0.2s ease-in-out;
 
-    &--expanded {
+    .sidebar--expanded & {
       opacity: 1;
-      width: auto;
     }
   }
-
+  
+  // آیکون Chevron
   &__chevron {
+    display: flex;
+    align-items: center;
     transition: transform 0.3s ease;
+    
     &--open {
       transform: rotate(180deg);
     }
   }
 
+  // کانتینر زیرمنو
   &__submenu {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
-    padding-inline-start: $spacing-4;
+    position: relative;
+
+    // خط عمودی برای زیبایی
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block-start: 0;
+      inset-block-end: $spacing-2;
+      inset-inline-start: 2.5rem;
+      transform: translateX(-50%);
+      width: 2px;
+      background-color: $color-border-secondary;
+    }
 
     &--open {
       max-height: 1000px;
+    }
+    
+    // محتوای واقعی زیرمنو
+    &__submenu-content {
+      padding-top: $spacing-2;
     }
   }
 }

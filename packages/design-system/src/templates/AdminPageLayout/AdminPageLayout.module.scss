@@ -1,0 +1,77 @@
+@use "../../styles" as *;
+
+.admin-page-layout {
+  height: 100vh;
+  width: 100vw;
+  background-color: $color-bg-body;
+  overflow: hidden;
+
+  // جهت‌ متن
+  &--rtl { direction: rtl; }
+  &--ltr { direction: ltr; }
+
+  // Mobile-first: فلِکس ستونی
+  display: flex;
+  flex-direction: column;
+
+  &__sidebar {
+    position: fixed;
+    inset: 0;
+    z-index: $z-index-40;
+    transition: transform 0.3s ease-in-out;
+
+    // در موبایل: پیش‌فرض مخفی و از سمتِ درست اسلاید می‌کند
+    .admin-page-layout--rtl & { transform: translateX(100%); }  // از راست وارد شود
+    .admin-page-layout--ltr & { transform: translateX(-100%); } // از چپ وارد شود
+
+    &--mobile-open { transform: translateX(0); }
+  }
+
+  &__header { flex-shrink: 0; }
+  &__content { flex-grow: 1; overflow-y: auto; padding: $spacing-6; }
+  &__overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); z-index: $z-index-30; }
+
+  // Desktop: تبدیل به Grid
+  @media (min-width: $breakpoint-lg) {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    transition: grid-template-columns 0.3s ease-in-out;
+
+    // نکته مهم: اینجا باید همان عنصر را هدف بگیریم، نه "جد" آن
+    // برای همین از &.admin-page-layout--rtl / &.admin-page-layout--ltr استفاده می‌کنیم
+    &.admin-page-layout--rtl {
+      // ستون‌ها: محتوا 1fr، سایدبار 5rem (جمع شده)
+      grid-template-columns: 1fr 5rem;
+      // هدر تمام عرض؛ سطر دوم: محتوا + سایدبار راست
+      grid-template-areas:
+        "header header"
+        "content sidebar";
+    }
+
+    &.admin-page-layout--ltr {
+      // ستون‌ها: سایدبار چپ 5rem (جمع شده)، محتوا 1fr
+      grid-template-columns: 5rem 1fr;
+      grid-template-areas:
+        "header header"
+        "sidebar content";
+    }
+
+    // وقتی سایدبار در دسکتاپ باز (پین یا هاور) است، عرضش را افزایش بده
+    &.admin-page-layout--sidebar-expanded.admin-page-layout--rtl {
+      grid-template-columns: 1fr 16rem;
+    }
+    &.admin-page-layout--sidebar-expanded.admin-page-layout--ltr {
+      grid-template-columns: 1rem 1fr;
+    }
+
+    // بچه‌ها در دسکتاپ روی نواحی گرید بنشینند
+    &__sidebar {
+      grid-area: sidebar;
+      position: static;
+      transform: none !important;
+    }
+    &__header { grid-area: header; }
+    &__content { grid-area: content; padding: $spacing-8; }
+    &__overlay { display: none; }
+  }
+}

@@ -3,42 +3,67 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  // height: 100vh; // این دیگر نیازی نیست، چون با top و bottom کنترل می‌شود
-
-  // ✨ --- تغییرات کلیدی برای موقعیت‌یابی ---
-  position: fixed; // ۱. سایدبار را از جریان عادی صفحه خارج می‌کند
-  inset-block-start: 0; // معادل top: 0
-  inset-block-end: 0;   // معادل bottom: 0
-  inset-inline-start: 0; // معادل right: 0 در حالت RTL
-
-  z-index: $z-index-40; // ۲. اطمینان از اینکه سایدبار روی محتوا قرار می‌گیرد
-  // --- پایان تغییرات کلیدی ---
-
-  width: 5rem; // عرض در حالت بسته
+  height: 100%;
+  width: 5rem;
   background-color: $color-bg-surface;
   border-inline-end: 1px solid $color-border-primary;
   transition: width 0.3s ease-in-out;
-  overflow-x: hidden; // جلوگیری از نمایش محتوای اضافی در حالت بسته
+  overflow-x: hidden;
 
   &--expanded {
-    width: 16rem; // عرض در حالت باز
+    width: 16rem;
   }
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 4rem; // ارتفاع هدر سایدبار باید با ارتفاع هدر اصلی یکی باشد
+    height: 4rem;
     flex-shrink: 0;
     padding: 0 $spacing-4;
-    position: relative;
+    position: relative; // برای موقعیت‌دهی absolute فرزندان
+    border-bottom: 1px solid $color-border-primary;
   }
-  
-  // ... بقیه استایل‌ها بدون تغییر باقی می‌مانند ...
+   &__close-button {
+    // در دسکتاپ مخفی است
+    display: none;
+    position: absolute;
+    // در RTL، سمت چپ قرار می‌گیرد
+    inset-inline-end: $spacing-4;
+    top: 50%;
+    transform: translateY(-50%);
+
+    // فقط در موبایل نمایش داده می‌شود
+    @media (max-width: $breakpoint-lg) {
+      display: flex;
+    }
+    
+    button {
+      background: transparent;
+      border: none;
+      color: $color-text-secondary;
+      cursor: pointer;
+      font-size: 1.25rem;
+      padding: $spacing-2;
+      border-radius: $radius-full;
+      
+      &:hover {
+        color: $color-text-primary;
+        background-color: $color-bg-surface-hover;
+      }
+    }
+  }
+  // --- ✨ تغییرات برای لوگو و نام برنامه ---
   &__logo {
     color: $color-brand-primary;
     font-size: 1.75rem;
-    transition: opacity 0.2s;
+    // position و transform حذف شدند. همیشه در مرکز است.
+    transition: opacity 0.3s ease;
+    
+    // وقتی سایدبار باز است، لوگو محو می‌شود
+    .sidebar--expanded & {
+      opacity: 0;
+    }
   }
 
   &__app-name {
@@ -46,24 +71,70 @@
     font-weight: $font-weight-bold;
     color: $color-text-primary;
     white-space: nowrap;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.2s ease;
+    position: absolute; // روی لوگو قرار می‌گیرد
+    // transform حذف شد
+    opacity: 0; // در حالت پیش‌فرض (بسته) مخفی است
+    transition: opacity 0.3s ease;
     
+    // وقتی سایدبار باز است، نام برنامه ظاهر می‌شود
     .sidebar--expanded & {
       opacity: 1;
+    }
+  }
+  // --- پایان تغییرات لوگو ---
+
+  // --- ✨ تغییرات برای دکمه پین ---
+  &__pin-button {
+    position: absolute;
+    // به جای مقدار منفی، از یک مقدار مثبت کوچک استفاده می‌کنیم تا داخل باشد
+    inset-inline-end: $spacing-3; // 12px از لبه فاصله دارد
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: $z-index-10;
+
+    // فقط در حالت دسکتاپ و زمانی که سایدبار باز است نمایش داده می‌شود
+    @media (min-width: $breakpoint-lg) {
+      .sidebar--expanded & {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    button {
+      background-color: $color-bg-surface;
+      border: 1px solid $color-border-primary;
+      border-radius: $radius-full;
+      width: 1.75rem;
+      height: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-text-secondary;
+      cursor: pointer;
+      box-shadow: $shadow;
+
+      &:hover {
+        color: $color-text-primary;
+        transform: scale(1.1);
+      }
     }
   }
   
   &__nav {
     flex-grow: 1;
     overflow-y: auto;
-    padding: $spacing-2;
+    padding: $spacing-2 0;
   }
   
   &__footer {
     flex-shrink: 0;
-    padding: $spacing-2;
+    padding: $spacing-2 0;
     border-top: 1px solid $color-border-primary;
   }
+  &__icon {
+    margin-inline-end: $spacing-4; // "margin-inline-end" به dir والد واکنش نشان می‌دهد
+}
 }

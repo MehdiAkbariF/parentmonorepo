@@ -1,55 +1,86 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./Header";
- // فرض می‌کنیم یک کامپوننت Button دارید
+import { Label } from "../../atoms/Label/Label";
+// ۱. تایپ مورد نیاز را از کامپوننت خودش ایمپورت می‌کنیم
+import { type AvatarDropdownItem } from "../AvatarDropdown/AvatarDropdown"; 
+import { FaUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 
 const meta: Meta<typeof Header> = {
   title: "Molecules/Header",
   component: Header,
   parameters: {
-    layout: "fullscreen", // برای نمایش بهتر هدر در عرض کامل
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
+  argTypes: {
+    title: { control: "text" },
+   
+    showBackButton: { control: "boolean" },
+    showNotificationButton: { control: "boolean" },
+    showThemeSwitch: { control: "boolean" },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Header>;
 
-export const Default: Story = {
+// ۲. به صورت صریح تایپ آرایه را مشخص می‌کنیم
+const profileItems: AvatarDropdownItem[] = [
+    { 
+      label: { text: "مشاهده پروفایل", size: "sm" }, // TypeScript حالا می‌داند که size باید از نوع LabelSize باشد
+      icon: <FaUser />, 
+      onClick: () => alert("Profile!") 
+    },
+    { 
+      label: { text: "خروج", size: "sm", variant: "error" }, // و variant باید از نوع LabelVariant باشد
+      icon: <FiLogOut />, 
+      onClick: () => alert("Logout!") 
+    },
+];
+
+export const DefaultDesktop: Story = {
+  name: "Default (Desktop)",
   args: {
-    title: "Page Title",
+    title: <Label text="داشبورد" size="lg" />,
+ 
     showBackButton: true,
     showNotificationButton: true,
+    showThemeSwitch: true,
+    avatarDropdownItems: profileItems,
+    userAvatar: { src: "https://i.pravatar.cc/150?u=a042581f4e29026704d", alt: "User" },
   },
 };
 
-export const WithTitleOnly: Story = {
+export const MobileView: Story = {
+  name: "Mobile View (با دکمه منو)",
   args: {
-    title: "Settings",
+    ...DefaultDesktop.args,
+    onMenuButtonClick: () => alert("Menu Button Clicked!"),
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+};
+
+export const LTRView: Story = {
+  name: "Left-to-Right (LTR)",
+  args: {
+    ...DefaultDesktop.args,
+    title: <Label text="Dashboard" size="lg" />,
+ 
+  },
+};
+
+export const Minimal: Story = {
+  name: "Minimal (فقط عنوان)",
+  args: {
+    title: <Label text="تنظیمات" size="lg" />,
+
     showBackButton: false,
     showNotificationButton: false,
-  },
-};
-
-export const BackButtonOnly: Story = {
-  args: {
-    title: "",
-    showBackButton: true,
-    showNotificationButton: false,
-  },
-};
-
-export const WithCustomActions: Story = {
-  args: {
-    title: "Dashboard",
-    showBackButton: false,
-    showNotificationButton: false, // مخفی کردن دکمه پیش‌فرض
-    // کامپوننت یا JSX سفارشی خود را اینجا قرار دهید
-    actions: (
-      <div style={{ display: "flex", gap: "0.5rem" }}>
-        {/* این یک مثال است. شما باید کامپوننت Button خود را داشته باشید. */}
-        {/* <Button variant="primary" size="sm">Create New</Button> */}
-        <span>User Profile</span>
-      </div>
-    ),
+    showThemeSwitch: false,
   },
 };

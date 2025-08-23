@@ -2,109 +2,97 @@
 
 import React, { ReactNode } from "react";
 import { IconButton } from "../../atoms/IconButton";
-import { BackIcon, NotificationIcon } from "../../atoms/icons";
+import { BackIcon } from "../../atoms/icons/BackIcon";
+import { NotificationIcon } from "../../atoms/icons/NotificationIcon"
 import { ThemeSwitch } from "../../atoms/ThemeSwitch/ThemeSwitch";
-import { Avatar, AvatarProps } from "../../atoms/Avatar/Avatar";
 import { AvatarDropdown, AvatarDropdownItem } from "../AvatarDropdown/AvatarDropdown";
+import { AvatarProps } from "../../atoms/Avatar";
+import { FiMenu } from "react-icons/fi";
 
-/**
- * پراپرتی‌های کامپوننت Header
- */
 export interface HeaderProps {
-title?: ReactNode;
+  title?: ReactNode;
+  // دکمه بازگشت حالا در انتهای هدر است
   showBackButton?: boolean;
+  onBackClick?: () => void;
+  onMenuButtonClick?: () => void;
   showNotificationButton?: boolean;
   showThemeSwitch?: boolean;
-
-  /**
-   * اطلاعات یک آواتار ساده برای نمایش.
-   * این پراپرتی تنها در صورتی استفاده می‌شود که `avatarDropdownItems` ارائه نشده باشد.
-   */
-  userAvatar?: AvatarProps;
-  /**
-   * تابعی که هنگام کلیک روی آواتار ساده اجرا می‌شود.
-   */
-  onAvatarClick?: () => void;
-
-  /**
-   * آرایه‌ای از آیتم‌ها برای منوی پروفایل کاربر.
-   * ارائه این پراپرتی باعث نمایش یک AvatarDropdown کامل می‌شود و بر `userAvatar` اولویت دارد.
-   */
   avatarDropdownItems?: AvatarDropdownItem[];
-
-  onBackClick?: () => void;
-  onNotificationClick?: () => void;
+  userAvatar?: AvatarProps;
+  appName?: string;
+  logo?: ReactNode;
+  // actions دیگر کاربرد اصلی ندارد، چون اکشن‌ها به سمت راست منتقل شده‌اند
+  // اما آن را برای موارد خاص نگه می‌داریم
   actions?: ReactNode;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   title,
-  showBackButton = true,
+  showBackButton = false, // پیش‌فرض false است تا در همه صفحات نمایش داده نشود
+  onBackClick = () => typeof window !== 'undefined' && window.history.back(),
+  onMenuButtonClick,
   showNotificationButton = true,
-  showThemeSwitch = false,
-  userAvatar,
-  onAvatarClick,
+  showThemeSwitch = true,
   avatarDropdownItems,
-  onBackClick = () => window.history.back(),
-  onNotificationClick,
+  userAvatar,
+  appName,
+  logo,
   actions,
-  
 }) => {
+  // به صورت ثابت rtl است
+  const direction = 'rtl';
+
   return (
-    <header className="header">
+    <header className="header" dir={direction}>
+      {/* ۱. ✨ بخش راست (start) حالا شامل اکشن‌ها است */}
       <div className="header__start">
+        <div className="header__menu-toggle">
+          {onMenuButtonClick && (
+            <IconButton
+              icon={<FiMenu />}
+              variant="default"
+              onClick={onMenuButtonClick}
+              aria-label="باز کردن منو"
+            />
+          )}
+        </div>
+        
+        {/* اکشن‌ها (نوتیفیکیشن، تم، پروفایل) در دسکتاپ اینجا نمایش داده می‌شوند */}
+        <div className="header__desktop-actions">
+          {showNotificationButton && <IconButton icon={<NotificationIcon />} variant="default" aria-label="اعلانات" />}
+          {showThemeSwitch && <ThemeSwitch />}
+          {avatarDropdownItems && (
+            <AvatarDropdown
+              align="left"
+              items={avatarDropdownItems}
+              avatar={userAvatar || { alt: "پروفایل کاربر" }}
+            />
+          )}
+          {actions}
+        </div>
+      </div>
+
+      <div className="header__center">
+        <div className="header__brand-mobile">
+          <div className="header__logo-mobile">{logo}</div>
+          <span className="header__app-name-mobile">{appName}</span>
+        </div>
+        
+        <div className="header__title-desktop">
+          {title}
+        </div>
+      </div>
+
+      {/* ۲. ✨ بخش چپ (end) حالا شامل دکمه بازگشت است */}
+      <div className="header__end">
         {showBackButton && (
           <IconButton
             icon={<BackIcon />}
-            size="md"
             variant="default"
             onClick={onBackClick}
-            aria-label="Back"
+            aria-label="بازگشت"
           />
         )}
-      </div>
-        <div className="header__center">
-        {/* ✨ دیگر از تگ h1 استفاده نمی‌کنیم، چون کامپوننت Label خودش تگ span است */}
-        {/* این باعث می‌شود هر چیزی که به عنوان title پاس داده شود، رندر شود */}
-        {title}
-      </div>
-      <div className="header__end">
-        <div className="header__actions">
-          {actions}
-          {showNotificationButton && (
-            <IconButton
-              icon={<NotificationIcon />}
-              size="md"
-              variant="default"
-              onClick={onNotificationClick}
-              aria-label="Notifications"
-            />
-          )}
-          {showThemeSwitch && <ThemeSwitch />}
-
-          {/* --- منطق جدید و کامل برای نمایش آواتار --- */}
-          
-          {/* حالت اول: اگر آیتم‌های دراپ‌داون وجود دارد، منو را نمایش بده */}
-          {avatarDropdownItems ? (
-            <AvatarDropdown
-              align="right"
-              items={avatarDropdownItems}
-              // اطلاعات آواتار را به دراپ‌داون پاس می‌دهیم
-              avatar={userAvatar || { 
-                  src: "https://i.pravatar.cc/150?u=default-user", 
-                  alt: "User Profile" 
-              }}
-            />
-          ) : // حالت دوم: اگر آیتم دراپ‌داون نیست ولی آواتار ساده هست، آن را نمایش بده
-          userAvatar ? (
-            <div
-              onClick={onAvatarClick}
-              style={{ cursor: onAvatarClick ? "pointer" : "default" }}
-            >
-              <Avatar {...userAvatar} />
-            </div>
-          ) : null}
-        </div>
       </div>
     </header>
   );
