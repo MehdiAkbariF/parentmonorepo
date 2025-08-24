@@ -1,21 +1,17 @@
 "use client";
 
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode, useMemo, useState } from "react";
 import { ActionButtons, ActionButtonsProps } from "../ActionButtons/ActionButtons";
 
-/**
- * تعریف ساختار یک ستون در جدول.
- * T یک نوع ژنریک برای داده‌های هر سطر است.
- */
+type MobileDisplayPosition = 'primary' | 'secondary' | 'status';
+
 export interface ColumnDefinition<T> {
   accessorKey: keyof T;
   header: string;
   cell?: (item: T) => ReactNode;
+  mobileDisplay?: MobileDisplayPosition;
 }
 
-/**
- * پراپرتی‌های کامپوننت Table
- */
 export interface TableProps<T> {
   data: T[];
   columns: ColumnDefinition<T>[];
@@ -23,10 +19,6 @@ export interface TableProps<T> {
   rowActions?: (item: T) => ActionButtonsProps;
 }
 
-/**
- * Table یک کامپوننت داده-محور و واکنش‌گرا است که فقط ساختار جدول را فراهم می‌کند.
- * مسئولیت ظاهر محتوای سلول‌ها بر عهده مصرف‌کننده است.
- */
 export const Table = <T extends { id?: string | number }>({
   data,
   columns,
@@ -34,20 +26,25 @@ export const Table = <T extends { id?: string | number }>({
   rowActions,
 }: TableProps<T>) => {
   
+  const [expandedRows, setExpandedRows] = useState<Set<string | number>>(new Set());
+  const toggleRow = (rowId: string | number) => {
+    setExpandedRows(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(rowId)) newSet.delete(rowId);
+      else newSet.add(rowId);
+      return newSet;
+    });
+  };
+
   const tableColumns = useMemo(() => {
     let finalColumns = [...columns];
-
     if (rowActions) {
       finalColumns.push({
         accessorKey: 'actions' as any,
         header: 'عملیات',
-        cell: (item) => {
-          const actionProps = rowActions(item);
-          return <ActionButtons {...actionProps} />;
-        },
+        cell: (item) => <ActionButtons {...rowActions(item)} />,
       });
     }
-
     return finalColumns;
   }, [columns, rowActions]);
 
@@ -60,33 +57,51 @@ export const Table = <T extends { id?: string | number }>({
       <table className="table">
         <thead className="table__head">
           <tr>
-            {tableColumns.map((column) => (
-              <th key={column.accessorKey as string}>{column.header}</th>
-            ))}
+            {tableColumns.map((column) => <th key={column.accessorKey as string}>{column.header}</th>)}
           </tr>
         </thead>
         <tbody className="table__body">
-          {data.map((item, rowIndex) => (
-            <tr key={item.id || rowIndex}>
-              {tableColumns.map((column, colIndex) => {
-                const cellClasses = [
-                  column.accessorKey === 'actions' ? 'table__cell--actions' : ''
-                ].filter(Boolean).join(' ');
-                
-                // کامپوننت دقیقاً همان چیزی را رندر می‌کند که در cell تعریف شده
-                // یا مقدار خام داده را اگر cell تعریف نشده باشد.
-                const cellContent = column.cell 
-                  ? column.cell(item) 
-                  : (item[column.accessorKey as keyof T] as ReactNode);
-                
-                return (
-                  <td key={colIndex} data-label={column.header} className={cellClasses}>
-                    {cellContent}
+          {data.map((item, rowIndex) => {
+            const rowId = item.id || rowIndex;
+            const isExpanded = expandedRows.has(rowId);
+
+            return (
+              <React.Fragment key={rowId}>
+                <tr 
+                  className={`table__row ${isExpanded ? 'table__row--expanded' : ''}`}
+                  onClick={() => toggleRow(rowId)}
+                >
+                  {/* ۱. ✨ ما همیشه تمام ستون‌ها را رندر می‌کنیم */}
+                  {tableColumns.map((column) => {
+                    const cellContent = column.cell ? column.cell(item) : (item[column.accessorKey as keyof T] as ReactNode);
+                    // ۲. ✨ کلاس داینامیک را بر اساس mobileDisplay اضافه می‌کنیم
+                    const cellClass = `table__cell table__cell--${column.mobileDisplay || 'hidden'}`;
+                    
+                    return (
+                      <td key={column.accessorKey as string} data-label={column.header} className={cellClass}>
+                        {cellContent}
+                      </td>
+                    );
+                  })}
+                </tr>
+
+                <tr className={`table__details-row ${isExpanded ? 'table__details-row--expanded' : ''}`}>
+                  <td colSpan={tableColumns.length}>
+                    <div className="table__details-content">
+                      <ul>
+                        {tableColumns.map(col => (
+                           <li key={col.accessorKey as string}>
+                               <strong>{col.header}:</strong> 
+                               <span>{col.cell ? col.cell(item) : (item[col.accessorKey as keyof T] as ReactNode)}</span>
+                           </li>
+                        ))}
+                      </ul>
+                    </div>
                   </td>
-                );
-              })}
-            </tr>
-          ))}
+                </tr>
+              </React.Fragment>
+            );
+          })}
         </tbody>
       </table>
     </div>

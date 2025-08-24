@@ -1,0 +1,43 @@
+@use "../../styles" as *;
+
+.filter-tabs {
+  display: flex;
+  gap: $spacing-2;
+  background-color: $color-bg-secondary;
+  padding: $spacing-1;
+  border-radius: $radius-md;
+
+  // --- ✨ تغییرات برای حالت موبایل ---
+  @media (max-width: $breakpoint-md) {
+    // ۱. اجازه سرریز شدن به آیتم‌ها را می‌دهیم
+    overflow-x: auto;
+    // ۲. برای زیبایی، اسکرول‌بار پیش‌فرض را مخفی می‌کنیم
+    // (کاربر همچنان می‌تواند با کشیدن انگشت اسکرول کند)
+    -ms-overflow-style: none;  // IE and Edge
+    scrollbar-width: none;  // Firefox
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, and Opera
+    }
+  }
+
+  &__button {
+    padding: $spacing-2 $spacing-4;
+    border: none;
+    background-color: transparent;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-secondary;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    // ۳. جلوگیری از شکستن متن در چند خط
+    white-space: nowrap;
+
+    &--active {
+      background-color: $color-bg-surface;
+      color: $color-text-primary;
+      box-shadow: $shadow;
+    }
+  }
+}

@@ -15,4 +15,6 @@ export * from "./yadakchi-admin-components/layouts/ListPageLayout/ListPageLayout
 export * from "./molecules/ActionButtons/ActionButtons";
 export * from "./molecules/ListPageHeader/ListPageHeader";
 export * from "./atoms/ExportButton/ExportButton";
-export * from "./atoms/SearchInput/SearchInput";
+export * from "./molecules/Pagination/Pagination";
+export * from "./atoms/Select/Select";
+export * from "./molecules/FilterTabs/FilterTabs";

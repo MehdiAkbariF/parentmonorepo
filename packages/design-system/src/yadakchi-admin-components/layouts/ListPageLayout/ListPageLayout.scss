@@ -1,21 +1,86 @@
 @use "../../../styles" as *;
 
 .list-page-layout {
-  // این الگو در نسخه ساده، هیچ استایل اضافه‌ای نیاز ندارد
-  // و فقط به عنوان یک wrapper عمل می‌کند.
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .breadcrumb {
+    margin-bottom: $spacing-6;
+    flex-shrink: 0;
+  }
+
+  .list-page-header {
+    flex-shrink: 0;
+  }
+
+  &__filter-section {
+    margin-bottom: $spacing-6;
+    flex-shrink: 0;
+    
+    @media (min-width: $breakpoint-md) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; // برای اینکه اسکرول داخلی کار کند
+  }
   
- .breadcrumb {
-    margin-bottom: $spacing-4;
+  &__table-container {
+    flex-grow: 1;
+    overflow-y: auto; // فقط جدول اسکرول می‌خورد
+  }
+
+  // --- ✨ تغییرات کلیدی در اینجا هستند ---
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: $spacing-6;
+    gap: $spacing-4;
+    flex-shrink: 0;
+    
+    // ۱. در حالت موبایل، یک margin-bottom اضافه می‌کنیم
+    @media (max-width: $breakpoint-md) {
+      // این مقدار به اندازه کافی بزرگ است تا اکثر لیست‌ها جا شوند
+      // می‌توانید آن را به دلخواه تنظیم کنید
+      margin-bottom: $spacing-32; // 96px
+    }
+  }
+  
+  &__page-size-selector {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+  
+  &__pagination-container {
+    display: flex;
+    justify-content: center;
   }
 
   &__state {
-    padding: $spacing-12 $spacing-6;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-6;
     text-align: center;
     color: $color-text-secondary;
     font-size: $font-size-lg;
     background-color: $color-bg-surface;
     border-radius: $radius-lg;
     border: 1px solid $color-border-primary;
+    margin-top: $spacing-6;
 
     &--error {
       color: $color-utility-error;

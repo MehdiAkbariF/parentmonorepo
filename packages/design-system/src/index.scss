@@ -16,3 +16,6 @@
 @use "./molecules/ListPageHeader/ListPageHeader.scss";
 @use "./atoms/ExportButton/ExportButton.scss" as *;
 @use "./atoms/SearchInput/SearchInput.scss";
+@use "./molecules/Pagination/Pagination.scss";
+@use "./atoms/Select/Select.scss";
+@use "./molecules/FilterTabs/FilterTabs.scss";

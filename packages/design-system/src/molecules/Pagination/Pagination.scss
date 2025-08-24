@@ -1,0 +1,61 @@
+@use "../../styles" as *;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  list-style-type: none;
+  padding: 0;
+  margin: $spacing-6 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 $spacing-2;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-md;
+    background-color: $color-bg-surface;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+
+    &:hover:not(&--disabled):not(&--active) {
+      border-color: $color-brand-primary;
+      color: $color-brand-primary;
+    }
+
+    &--active {
+      background-color: $color-brand-primary;
+      border-color: $color-brand-primary;
+      color: $color-text-on-brand;
+      cursor: default;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--dots {
+      cursor: default;
+      border: none;
+      background: none;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    &__item:not(:first-child):not(:last-child) {
+      &:not(.pagination__item--active) {
+        display: none;
+      }
+    }
+    gap: $spacing-3;
+  }
+}

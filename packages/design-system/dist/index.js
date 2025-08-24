@@ -1,11 +1,9 @@
 // packages/design-system/src/index.ts (نسخه نهایی و تمیز)
-// Atoms
 export * from "./atoms/icons";
 export * from "./atoms/IconButton";
 export * from "./atoms/Label/Label";
 export * from "./atoms/ThemeSwitch/ThemeSwitch";
 export * from "./atoms/Avatar"; // <-- فقط یک بار
-// Molecules
 export * from "./molecules/Header";
 export * from "./molecules/AvatarDropdown";
 export * from "./molecules/SidebarMenuItem";
@@ -18,4 +16,6 @@ export * from "./yadakchi-admin-components/layouts/ListPageLayout/ListPageLayout
 export * from "./molecules/ActionButtons/ActionButtons";
 export * from "./molecules/ListPageHeader/ListPageHeader";
 export * from "./atoms/ExportButton/ExportButton";
-export * from "./atoms/SearchInput/SearchInput";
+export * from "./molecules/Pagination/Pagination";
+export * from "./atoms/Select/Select";
+export * from "./molecules/FilterTabs/FilterTabs";

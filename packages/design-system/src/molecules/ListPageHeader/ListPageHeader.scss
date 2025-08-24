@@ -1,77 +1,8 @@
 @use "../../styles" as *;
 
 .list-page-header {
-  // ۱. ساختار اصلی با Flexbox
   display: flex;
-  flex-direction: column; // همه چیز به صورت پیش‌فرض زیر هم است (Mobile First)
-  gap: $spacing-4; // فاصله 16px بین ردیف‌ها
-  
-  padding: $spacing-4;
-  margin-bottom: $spacing-6;
-  background-color: $color-bg-surface;
-  border: 1px solid $color-border-primary;
-  border-radius: $radius-lg;
-  box-shadow: $shadow;
-
-  // --- بخش بالایی هدر (عنوان و اکشن‌ها) ---
-  &__top-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: $spacing-4;
-  }
-
-  // بخش عنوان (راست)
-  &__title-section {
-    display: flex;
-    align-items: baseline;
-    gap: $spacing-3;
-  }
-
-  &__count {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    color: $color-text-secondary;
-    background-color: $color-bg-body;
-    padding: $spacing-1 $spacing-2;
-    border-radius: $radius-full;
-  }
-
-  // بخش اکشن‌ها (چپ)
-  &__actions-section {
-    display: flex;
-    align-items: center;
-    gap: $spacing-3;
-  }
-
-  // --- بخش پایینی هدر (فقط جستجو) ---
-  // ۲. استایل کادر جستجو (به صورت پیش‌فرض عرض کامل دارد)
-  .search-input__wrapper {
-    width: 100%;
-    max-width: none; // max-width پیش‌فرض را لغو می‌کنیم
-  }
-
-
-  // --- استایل‌های دسکتاپ ---
-  // ۳. در صفحات بزرگتر، چیدمان را تغییر می‌دهیم
-  @media (min-width: $breakpoint-md) {
-    // همه چیز در یک ردیف قرار می‌گیرد
-    flex-direction: row;
-
-    &__top-section {
-      // در دسکتاپ، بخش بالایی دیگر 필요 نیست
-      // ما محتوای آن را مستقیماً در flex قرار می‌دهیم
-      // این یک ترفند است. بیایید ساختار را ساده‌تر کنیم.
-    }
-  }
-}
-
-// --- رویکرد تمیزتر و ساده‌تر ---
-
-.list-page-header {
-  display: flex;
-  flex-wrap: wrap; // کلید اصلی واکنش‌گرایی
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-4;
@@ -86,33 +17,43 @@
     display: flex;
     align-items: baseline;
     gap: $spacing-3;
-    // به این بخش می‌گوییم که در صورت نیاز کوچک شود، اما بزرگ نشود
     flex: 1 1 auto;
-    min-width: 250px; // یک عرض حداقلی برای جلوگیری از شکستن زشت
+    min-width: 250px;
   }
 
   &__count {
-    // ... بدون تغییر
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-secondary;
+    background-color: $color-bg-secondary;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-full;
   }
 
   &__actions-section {
     display: flex;
     align-items: center;
     gap: $spacing-3;
-    // به این بخش اجازه بزرگ شدن نمی‌دهیم
     flex-shrink: 0;
   }
 
-  // ۴. کادر جستجو را به صورت جداگانه هدف قرار می‌دهیم
-  //    این سلکتور به معنی "هر search-input__wrapper که داخل list-page-header است" می‌باشد
+  // ما خود کامپوننت ExportButton را هدف قرار می‌دهیم
+  // تا بتوانیم آن را به صورت شرطی مخفی کنیم.
+  .export-button {
+    // ✨ --- تغییر کلیدی اینجاست ---
+    // در سایزهای کوچک (موبایل)، دکمه را مخفی کن
+    @media (max-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  // استایل برای کادر جستجو (بدون تغییر)
   .search-input__wrapper {
-    // به این بخش می‌گوییم که تمام فضای افقی باقی‌مانده را پر کند
-    flex-basis: 100%; // عرض پایه را 100% در نظر می‌گیرد
+    flex-basis: 100%;
     
-    // ۵. در صفحات بزرگتر، عرض آن را به حالت خودکار برمی‌گردانیم
     @media (min-width: $breakpoint-lg) {
       flex-basis: auto;
-      width: 320px; // عرض ثابت برای دسکتاپ
+      width: max-content;
     }
   }
 }
