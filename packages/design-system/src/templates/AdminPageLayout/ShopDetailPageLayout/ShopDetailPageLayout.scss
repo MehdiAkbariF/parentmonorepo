@@ -1,0 +1,41 @@
+@use "../../../styles/" as *;
+
+.detail-page-layout {
+  // این کانتینر اصلی است
+
+  &__body {
+    display: grid;
+    // ۱. در موبایل، یک ستون داریم و همه چیز زیر هم قرار می‌گیرد
+    grid-template-columns: 1fr;
+    gap: $spacing-6; // فاصله بین محتوای اصلی و سایدبار در موبایل
+
+    // ۲. در دسکتاپ (از lg به بالا)، چیدمان دو ستونی می‌شود
+    @media (min-width: $breakpoint-lg) {
+      // ستون اصلی ۲ برابر ستون فرعی است
+      grid-template-columns: 2fr 1fr;
+      // فاصله ستون‌ها را بیشتر می‌کنیم
+      gap: $spacing-8;
+    }
+  }
+
+  // ستون محتوای اصلی
+  &__main-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-6; // فاصله بین کارت‌ها در محتوای اصلی
+  }
+
+  // ستون فرعی (سایدبار)
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-6; // فاصله بین کارت‌ها در سایدبار فرعی
+
+    // ۳. (اختیاری اما پیشنهادی) سایدبار را در دسکتاپ چسبان می‌کنیم
+    @media (min-width: $breakpoint-lg) {
+      position: sticky;
+      top: $spacing-6; // با کمی فاصله از بالای صفحه
+      align-self: start; // برای اینکه sticky به درستی کار کند
+    }
+  }
+}

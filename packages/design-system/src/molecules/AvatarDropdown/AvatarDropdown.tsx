@@ -1,50 +1,40 @@
 "use client";
 
 import React, { useState, useRef, useEffect, ReactNode } from "react";
+// ۱. تایپ LabelProps را از فایل خودش وارد می‌کنیم
 import { Label, LabelProps } from "../../atoms/Label/Label";
-import { Avatar, AvatarProps } from "../../atoms/Avatar/Avatar"; // ایمپورت آواتار
+import { Avatar, AvatarProps } from "../../atoms/Avatar/Avatar";
 
-// نام اینترفیس‌ها را هم تغییر می‌دهیم
+// ۲. ✨ تغییر کلیدی و نهایی اینجاست ✨
 export interface AvatarDropdownItem {
-  label: LabelProps;
-  icon?: React.ReactNode;
+  // ما به صراحت می‌گوییم که label، پراپرتی‌های یک Label است که به عنوان <span> رندر می‌شود.
+  label: LabelProps<'span'>; 
+  icon?: ReactNode;
   onClick?: () => void;
 }
 
 export interface AvatarDropdownProps {
-  /**
-   * اطلاعات آواتار که به عنوان trigger استفاده می‌شود
-   */
   avatar: AvatarProps;
-  /**
-   * آرایه‌ای از آیتم‌هایی که در منو نمایش داده می‌شوند
-   */
   items: AvatarDropdownItem[];
-  /**
-   * جهت باز شدن منو
-   */
   align?: "left" | "right";
 }
 
-// نام کامپوننت را تغییر می‌دهیم
 export const AvatarDropdown: React.FC<AvatarDropdownProps> = ({
   avatar,
   items,
   align = "right",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleItemClick = (itemOnClick?: () => void) => {
@@ -53,8 +43,7 @@ export const AvatarDropdown: React.FC<AvatarDropdownProps> = ({
   };
 
   return (
-    // نام کلاس‌ها را تغییر می‌دهیم
-    <div className="avatar-dropdown-container" ref={menuRef} dir="rtl">
+    <div className="avatar-dropdown-container" ref={wrapperRef}>
       <div className="avatar-dropdown-trigger" onClick={() => setIsOpen(!isOpen)}>
         <Avatar {...avatar} />
       </div>
@@ -69,7 +58,8 @@ export const AvatarDropdown: React.FC<AvatarDropdownProps> = ({
                 onClick={() => handleItemClick(item.onClick)}
               >
                 {item.icon && <span className="avatar-dropdown__item-icon">{item.icon}</span>}
-                <Label {...item.label} />
+                {/* کامپوننت Label پراپرتی‌های item.label را دریافت می‌کند */}
+                <Label {...item.label} /> 
               </li>
             ))}
           </ul>

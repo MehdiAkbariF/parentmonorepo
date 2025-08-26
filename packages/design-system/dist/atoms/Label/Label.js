@@ -1,18 +1,20 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 /**
- * Label یک اتم برای نمایش متن با استایل‌های از پیش تعریف شده است.
- * این کامپوننت برای ثبات در تایپوگرافی در سراسر اپلیکیشن استفاده می‌شود.
+ * Label یک اتم پلی‌مورفیک برای نمایش متن با استایل‌های از پیش تعریف شده است.
+ * می‌تواند به عنوان span, label, p, h1 و ... رندر شود.
  */
-export const Label = ({ text, variant = "primary", size = "md", icon, className, // className را از بقیه props جدا می‌کنیم تا به درستی ترکیب شود
-...props // بقیه props ها (مانند style) در این متغیر قرار می‌گیرند
+export const Label = ({ text, variant = "primary", size = "md", icon, as, className, ...props // بقیه props ها (مانند htmlFor, style) در اینجا قرار می‌گیرند
  }) => {
-    // کلاس‌های CSS را به صورت داینامیک ایجاد می‌کنیم
+    // ۳. ✨ تگ مورد نظر را برای رندر شدن انتخاب می‌کنیم
+    const Component = as || 'span';
     const labelClasses = [
         'label',
         `label--${variant}`,
         `label--${size}`,
         icon ? 'label--with-icon' : '',
-        className || '' // کلاس‌های ورودی را اضافه می‌کنیم
-    ].filter(Boolean).join(' '); // فیلتر کردن مقادیر خالی و اتصال با فاصله
-    return (_jsxs("span", { className: labelClasses, ...props, children: [icon && _jsx("span", { className: "label__icon", children: icon }), text] }));
+        className || ''
+    ].filter(Boolean).join(' ');
+    return (
+    // ۴. ✨ از Component برای رندر کردن تگ داینامیک استفاده می‌کنیم
+    _jsxs(Component, { className: labelClasses, ...props, children: [icon && _jsx("span", { className: "label__icon", children: icon }), text] }));
 };

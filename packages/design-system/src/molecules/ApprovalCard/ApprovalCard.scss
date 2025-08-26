@@ -1,0 +1,25 @@
+@use "../../styles" as *;
+.approval-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-4; // پدینگ کمتر برای ظاهر فشرده‌تر
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-2;
+    flex-shrink: 0;
+
+    .button { // استایل دکمه‌های داخل کارت
+      padding: $spacing-2 $spacing-3;
+      font-size: $font-size-sm;
+      gap: $spacing-2;
+    }
+  }
+}

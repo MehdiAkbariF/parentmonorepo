@@ -1,0 +1,80 @@
+@use "../../styles" as *;
+
+.toggle-switch {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: $spacing-2 0; // پدینگ عمودی برای فاصله گرفتن از آیتم‌های دیگر
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    // با کلیک روی لیبل هم سوییچ کار می‌کند
+    cursor: pointer;
+  }
+
+  &__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  // دکمه اصلی سوییچ
+  & {
+    position: relative;
+    display: inline-flex;
+    height: 30px;
+    width: 60px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: $radius-full;
+    transition: background-color 0.2s ease-in-out;
+    background-color: $color-border-primary; // رنگ در حالت خاموش
+    
+    // حالت روشن
+    &--enabled {
+      background-color: $utility-green;
+    }
+
+    // حالت فوکوس
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($primary-blue-light, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  // دستگیره (Knob) سوییچ
+  &__knob {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    // با transform موقعیت را کنترل می‌کنیم
+    transform: translateX(-5px); // موقعیت اولیه
+    background-color: white;
+    border-radius: $radius-full;
+    box-shadow: $shadow;
+    // انیمیشن بسیار نرم
+    transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    
+    // موقعیت در حالت روشن
+    .toggle-switch--enabled & {
+      transform: translateX(26px);
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use "../../styles" as *;
+
+.key-value-display {
+  // --- چیدمان افقی (پیش‌فرض) ---
+  &--horizontal {
+    display: flex;
+    align-items: baseline; // تراز بهتر برای متن‌های چند خطی
+    gap: $spacing-2; // فاصله 8px بین کلید و مقدار
+  }
+
+  // --- چیدمان عمودی ---
+  &--vertical {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1; // فاصله 4px بین کلید و مقدار
+  }
+
+  // استایل کلید (dt)
+  &__key {
+    flex-shrink: 0; // جلوگیری از کوچک شدن کلید
+    // استایل‌های لیبل از خود کامپوننت Label می‌آید
+  }
+
+  // استایل مقدار (dd)
+  &__value {
+    margin: 0; // حذف margin پیش‌فرض تگ dd
+    color: $color-text-primary;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+  }
+}

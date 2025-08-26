@@ -4,7 +4,6 @@ import React, { ReactNode } from "react";
 import { ListPageHeader, ListPageHeaderProps } from "../../../molecules/ListPageHeader/ListPageHeader";
 import { Table, TableProps } from "../../../molecules/Table/Table";
 import { Pagination, PaginationProps } from "../../../molecules/Pagination/Pagination";
-import { Breadcrumb, BreadcrumbItem } from "../../../molecules/Breadcrumb/Breadcrumb";
 import { Select, SelectOption } from "../../../atoms/Select/Select";
 
 // ارتقاء تایپ PaginationProps برای شامل شدن گزینه‌های PageSize
@@ -13,11 +12,11 @@ export interface EnhancedPaginationProps extends PaginationProps {
   onPageSizeChange?: (size: number) => void;
 }
 
+// تایپ props فقط شامل چیزهایی است که واقعاً نیاز داریم
 export interface ListPageLayoutProps<T> {
   listPageHeaderProps: ListPageHeaderProps;
   tableProps: TableProps<T>;
   paginationProps?: EnhancedPaginationProps;
-  breadcrumbItems?: BreadcrumbItem[];
   isLoading?: boolean;
   error?: string | null;
   filterSection?: ReactNode;
@@ -31,13 +30,12 @@ export const ListPageLayout = <T extends {}>({
   listPageHeaderProps,
   tableProps,
   paginationProps,
-  breadcrumbItems,
   isLoading = false,
   error = null,
   filterSection,
 }: ListPageLayoutProps<T>) => {
   
-  // ۱. تابع renderContent حالا فقط محتوای اصلی (جدول یا state) را برمی‌گرداند
+  // تابع renderMainContent فقط محتوای اصلی (جدول یا state) را برمی‌گرداند
   const renderMainContent = () => {
     if (isLoading) {
       return <div className="list-page-layout__state">در حال بارگذاری داده‌ها...</div>;
@@ -46,7 +44,6 @@ export const ListPageLayout = <T extends {}>({
       return <div className="list-page-layout__state list-page-layout__state--error">{error}</div>;
     }
     return (
-      // ۲. Wrapper جدید برای جدول و فوتر
       <div className="list-page-layout__content-wrapper">
         <div className="list-page-layout__table-container">
           <Table {...tableProps} />
@@ -77,9 +74,8 @@ export const ListPageLayout = <T extends {}>({
   };
 
   return (
-    // ۳. ساختار اصلی که حالا یک Flex container عمودی است
+    // ساختار اصلی حالا Breadcrumb را ندارد
     <div className="list-page-layout">
-      {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
       <ListPageHeader {...listPageHeaderProps} />
       {filterSection && (
         <div className="list-page-layout__filter-section">

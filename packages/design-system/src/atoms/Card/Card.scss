@@ -1,0 +1,81 @@
+@use "../../styles" as *;
+
+.ds-card {
+  background: $color-bg-secondary;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($color-border-primary, 0.2);
+  box-shadow: 0 4px 12px rgba($gray-1000, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($gray-1000, 0.08);
+  }
+
+  &--padding-none { padding: 0; }
+  &--padding-sm { padding: $spacing-4; }
+  &--padding-md { padding: $spacing-6; }
+  &--padding-lg { padding: $spacing-8; }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-4;
+    border-bottom: 1px solid $color-border-primary;
+    padding-bottom: $spacing-3;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__shop-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  &__logo-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: $color-border-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: $color-text-secondary;
+  }
+
+  &__items {
+    display: grid;
+    gap: $spacing-4;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: contents;
+
+    &:not(:last-child)::after {
+      content: "";
+      grid-column: 1 / -1;
+      height: 1px;
+      background-color: rgba($color-border-primary, 0.1);
+      margin: $spacing-2 0;
+    }
+  }
+
+  &__item-title {
+    font-weight: 600;
+    color: $color-text-secondary;
+  }
+}

@@ -37,6 +37,9 @@ $secondary-bg-dark:  #1e293b;
 $accent-bg-light: #e0f2fe;
 $accent-bg-dark:  #0c4a6e;
 
+$primary-blue-hover-light: #0056b3; // یک رنگ کمی تیره‌تر برای هاور
+$primary-blue-hover-dark: #2563eb; // یک رنگ کمی روشن‌تر برای هاور
+
 //================================================
 // Semantic Theme Variables
 //================================================
@@ -52,7 +55,7 @@ $accent-bg-dark:  #0c4a6e;
   --color-text-placeholder:#{$gray-500};
   --color-text-on-brand:   #{$gray-0};
   --color-text-link:       #{$primary-blue-light};
-
+  --color-brand-primary-hover: #{$primary-blue-hover-light};
   --color-bg-body:         #{$gray-100};
   --color-bg-surface:      #{$gray-0};
   --color-bg-surface-hover:#{$gray-100};
@@ -75,7 +78,7 @@ $accent-bg-dark:  #0c4a6e;
   --color-brand-primary:   #{$primary-blue-dark};
   --color-brand-secondary: #{$secondary-teal};
   --color-brand-accent:    #{$accent-orange};
-
+  --color-brand-primary-hover: #{$primary-blue-hover-dark}; // متغیر جدید
   --color-text-primary:    #{$gray-100};
   --color-text-secondary:  #{$gray-400};
   --color-text-placeholder:#{$gray-500};
@@ -109,7 +112,7 @@ $color-text-secondary: var(--color-text-secondary);
 $color-text-placeholder: var(--color-text-placeholder);
 $color-text-on-brand: var(--color-text-on-brand);
 $color-text-link: var(--color-text-link);
-
+$color-brand-primary-hover: var(--color-brand-primary-hover); // مپینگ جدید
 $color-bg-body: var(--color-bg-body);
 $color-bg-surface: var(--color-bg-surface);
 $color-bg-surface-hover: var(--color-bg-surface-hover);
@@ -213,3 +216,9 @@ $shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1),
             0 10px 10px rgba(0, 0, 0, 0.04);
 $shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
 $shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+
+//================================================
+// Transitions
+//================================================
+$transition-base: all 0.2s ease-in-out;

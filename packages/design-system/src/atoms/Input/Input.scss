@@ -1,0 +1,12 @@
+@use "../../styles" as *;
+.input {
+  &__container { width: 100%; }
+  &__label { display: block; margin-bottom: $spacing-2; text-align: start; }
+  & {
+    width: 100%; height: 44px; padding: 0 $spacing-4;
+    border: 1px solid $color-border-primary; border-radius: $radius-md;
+    background-color: $color-bg-secondary; color: $color-text-primary;
+    font-size: $font-size-base;
+    &:focus { /* ... */ }
+  }
+}

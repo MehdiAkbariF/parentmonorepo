@@ -1,0 +1,7 @@
+"use client";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import "./Card";
+import { Label } from "../Label";
+export const Card = ({ children, items, shopLogo, shopTitle, shopStatus, shopStatusVariant = "primary", padding = "md", shadow = true, className = "", }) => {
+    return (_jsxs("div", { className: `ds-card ds-card--padding-${padding} ${shadow ? "ds-card--shadow" : ""} ${className}`, children: [(shopLogo || shopTitle || shopStatus) && (_jsxs("div", { className: "ds-card__header", children: [_jsxs("div", { className: "ds-card__header-left", children: [shopLogo ? (_jsx("img", { src: shopLogo, alt: shopTitle || "Shop Logo", width: 48, height: 48, style: { borderRadius: "8px", objectFit: "cover" } })) : (_jsx("div", { className: "ds-card__logo-placeholder", children: "\u0628\u062F\u0648\u0646 \u0644\u0648\u06AF\u0648" })), shopTitle && _jsx("h3", { className: "ds-card__shop-title", children: shopTitle })] }), shopStatus && (_jsx(Label, { text: shopStatus, variant: shopStatusVariant, size: "md" }))] })), items ? (_jsx("div", { className: "ds-card__items", children: items.map((item, idx) => (_jsxs("div", { className: "ds-card__item", children: [_jsxs("strong", { className: "ds-card__item-title", children: [item.title, ":"] }), _jsx(Label, { text: item.value, variant: item.valueVariant || "primary", size: item.valueSize || "md", icon: item.icon })] }, idx))) })) : (children)] }));
+};

@@ -12,16 +12,18 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 
   &__head {
     th {
-      padding: $spacing-3 $spacing-5; // پدینگ افقی افزایش یافت
+      padding: $spacing-3 $spacing-6;
       text-align: start;
       font-weight: $font-weight-semi-bold;
       font-size: $font-size-sm;
       color: $color-text-secondary;
       background-color: $color-bg-secondary;
       border-bottom: 1px solid $color-border-primary;
+      white-space: nowrap; // متن هدرها هم نباید بشکند
     }
   }
 
@@ -36,21 +38,18 @@
       }
     }
 
-    // --- Desktop Styles ---
-    // (ساختار Grid حذف شد تا از سادگی و پایداری اطمینان حاصل شود)
     .table__cell {
-      padding: $spacing-5; // پدینگ 20px از همه طرف برای دسکتاپ
-      vertical-align: middle; // کلید وسط‌چین کردن عمودی
+      padding: $spacing-4 $spacing-6;
+      vertical-align: middle;
       text-align: start;
+      font-size: $font-size-sm;
+      
+      // ✨ --- تغییر کلیدی و نهایی اینجاست ---
+      white-space: nowrap; // جلوگیری از شکستن متن و رفتن به خط بعدی
 
       &--actions {
         text-align: end;
       }
-    }
-    
-    // در دسکتاپ، ردیف موبایل (که در JSX نیست) و جزئیات مخفی هستند
-    .table__details-row {
-      display: none;
     }
   }
 }
@@ -61,113 +60,4 @@
   color: $color-text-secondary;
 }
 
-// --- استایل‌های واکنش‌گرا برای موبایل ---
-@media (max-width: $breakpoint-lg) {
-  .table-wrapper {
-    border: none;
-    background-color: transparent;
-  }
-  
-  .table {
-    border-collapse: separate;
-    border-spacing: 0 $spacing-3;
-     .label {
-      font-size: $font-size-sm; // سایز کوچکتر برای موبایل
-    } // فاصله بین کارت‌ها
-
-    &__head {
-      display: none;
-    }
-
-    &__body {
-      display: block;
-    }
-    
-    .table__row, .table__details-row {
-      display: block;
-      width: 100%;
-      border: 1px solid $color-border-primary;
-      background-color: $color-bg-surface;
-      box-shadow: $shadow;
-    }
-
-    .table__row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: $spacing-2;
-      cursor: pointer;
-      
-      transition: all 0.2s ease;
-
-      &:hover {
-        background-color: $color-bg-surface-hover;
-        border-color: $color-border-secondary;
-      }
-
-      &--expanded {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-bottom-color: transparent;
-        box-shadow: $shadow-md;
-      }
-      
-      .table__cell-desktop { display: none; }
-      .table__cell-mobile { display: block; padding: 0; }
-    }
-    
-    .table__mobile-row-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      gap: $spacing-4;
-
-      &::after {
-        content: '▾';
-        font-size: 1.5rem;
-        color: $color-text-secondary;
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
-      }
-    }
-
-    .table__row--expanded .table__mobile-row-content::after {
-      transform: rotate(180deg);
-    }
-
-    .table__mobile-cell--primary {
-      flex-grow: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .table__mobile-cell--meta {
-      display: flex;
-      // flex-direction: column; // حذف شد
-      align-items: center; // حالا به صورت افقی تراز می‌شوند
-      flex-shrink: 0;
-      text-align: end;
-      gap: $spacing-3; // فاصله افقی بین تاریخ و وضعیت
-    }
-    
-    .table__mobile-cell--secondary {
-      color: $color-text-secondary;
-      font-size: $font-size-xs;
-    }
-    
-    .table__details-row {
-      background-color: $color-bg-secondary;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-in-out;
-      border: 1px solid $color-border-primary;
-      border-top: none;
-    
-      box-shadow: $shadow-md;
-
-      
-    }
-  }
-}
+// کدهای @media query دیگر نیازی نیست

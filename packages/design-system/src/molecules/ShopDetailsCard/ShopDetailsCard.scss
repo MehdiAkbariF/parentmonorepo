@@ -1,0 +1,30 @@
+@use "../../styles" as *;
+
+.shop-details-card {
+  padding: $spacing-6;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    padding-bottom: $spacing-4;
+    margin-bottom: $spacing-4;
+    border-bottom: 1px solid $color-border-secondary;
+  }
+
+  &__title-group {
+    // ✨ ۱. این را به Flex Container تبدیل می‌کنیم
+    display: flex;
+    flex-wrap: wrap; // برای شکستن در صفحات خیلی کوچک
+    align-items: center; // تراز عمودی
+    gap: $spacing-3; // فاصله بین عنوان و بج
+  }
+
+  &__body {
+    display: grid;
+    gap: $spacing-5;
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

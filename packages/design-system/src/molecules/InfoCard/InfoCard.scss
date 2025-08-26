@@ -1,0 +1,33 @@
+@use "../../styles" as *;
+
+.info-card {
+  // می‌توانیم پدینگ پیش‌فرض کارت را برای کنترل بیشتر بازنویسی کنیم
+  padding: $spacing-6;
+
+  &__title {
+    display: block; // برای اینکه margin-bottom کار کند
+    margin-bottom: $spacing-6; // فاصله عنوان از گرید
+    border-bottom: 1px solid $color-border-secondary;
+    padding-bottom: $spacing-3;
+  }
+
+  // --- چیدمان گرید واکنش‌گرا ---
+  &__grid {
+    display: grid;
+    // در موبایل، یک ستون
+    grid-template-columns: 1fr; 
+    gap: $spacing-5; // فاصله 20px بین ردیف‌ها
+
+    // در دسکتاپ (از sm به بالا)، دو ستون
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+      // فاصله ستون‌ها
+      column-gap: $spacing-8;
+    }
+    
+    // در دسکتاپ‌های بزرگتر، سه ستون
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

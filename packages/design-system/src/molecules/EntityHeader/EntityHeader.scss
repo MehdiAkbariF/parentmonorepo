@@ -1,0 +1,30 @@
+@use "../../styles" as *;
+.entity-header {
+// ۱. استفاده از Flexbox برای چیدمان با قابلیت شکستن در موبایل
+display: flex;
+flex-wrap: wrap; // در صفحات کوچک، بخش‌ها زیر هم قرار می‌گیرند
+align-items: center;
+justify-content: space-between;
+gap: $spacing-4; // فاصله بین دو بخش
+padding-bottom: $spacing-5; // فاصله از محتوای بعدی
+border-bottom: 1px solid $color-border-primary; // جداکننده ظریف
+// --- بخش اصلی (راست) ---
+&__main {
+display: flex;
+align-items: center;
+gap: $spacing-4;
+min-width: 0; // برای جلوگیری از سرریز شدن عنوان
+}
+// استایل برای خود عنوان (که یک Label است)
+// ما تگ h1 داخل Label را هدف قرار می‌دهیم
+.label[as="h1"] {
+// جلوگیری از شکستن و نمایش "..." برای عناوین طولانی
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+// --- بخش وضعیت (چپ) ---
+&__status {
+flex-shrink: 0; // جلوگیری از کوچک شدن این بخش
+}
+}

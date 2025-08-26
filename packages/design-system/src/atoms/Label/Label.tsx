@@ -1,63 +1,57 @@
-import React, { ReactNode } from "react";
+import React, { ElementType, ReactNode } from "react";
 
-// تایپ‌های Variant و Size بدون تغییر باقی می‌مانند
 export type LabelVariant = "primary" | "secondary" | "error" | "disabled";
 export type LabelSize = "xs" | "sm" | "md" | "lg" | "xl" | "2x" | "3x" | "4x";
 
-/**
- * پراپرتی‌های کامپوننت Label.
- * این اینترفیس تمام پراپرتی‌های استاندارد یک تگ <span> را به ارث می‌برد (مانند style, className, onClick).
- */
-export interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /**
-   * متن اصلی که نمایش داده می‌شود.
-   */
-  
+// ۱. ✨ ما از تایپ‌های ژنریک برای ساخت یک کامپوننت پلی‌مورفیک استفاده می‌کنیم
+type LabelOwnProps<E extends ElementType = ElementType> = {
   text: string;
-  /**
-   * ظاهر رنگی لیبل.
-   * @default 'primary'
-   */
   variant?: LabelVariant;
-  /**
-   * اندازه و وزن فونت لیبل.
-   * @default 'md'
-   */
   size?: LabelSize;
-  /**
-   * یک آیکون که در کنار متن نمایش داده می‌شود.
-   */
   icon?: ReactNode;
-}
+  /**
+   * تگ HTML یا کامپوننت React که باید رندر شود.
+   * @default 'span'
+   */
+  as?: E;
+};
+
+// ۲. ✨ تایپ نهایی، پراپرتی‌های خودمان را با پراپرتی‌های تگ ورودی ترکیب می‌کند
+export type LabelProps<E extends ElementType> = LabelOwnProps<E> &
+  Omit<React.ComponentProps<E>, keyof LabelOwnProps<E>>;
 
 /**
- * Label یک اتم برای نمایش متن با استایل‌های از پیش تعریف شده است.
- * این کامپوننت برای ثبات در تایپوگرافی در سراسر اپلیکیشن استفاده می‌شود.
+ * Label یک اتم پلی‌مورفیک برای نمایش متن با استایل‌های از پیش تعریف شده است.
+ * می‌تواند به عنوان span, label, p, h1 و ... رندر شود.
  */
-export const Label: React.FC<LabelProps> = ({
+export const Label = <E extends ElementType = 'span'>({
   text,
   variant = "primary",
   size = "md",
   icon,
-  className, // className را از بقیه props جدا می‌کنیم تا به درستی ترکیب شود
-  ...props // بقیه props ها (مانند style) در این متغیر قرار می‌گیرند
-}) => {
-  // کلاس‌های CSS را به صورت داینامیک ایجاد می‌کنیم
+  as,
+  className,
+  ...props // بقیه props ها (مانند htmlFor, style) در اینجا قرار می‌گیرند
+}: LabelProps<E>) => {
+  // ۳. ✨ تگ مورد نظر را برای رندر شدن انتخاب می‌کنیم
+  const Component = as || 'span';
+
   const labelClasses = [
     'label',
     `label--${variant}`,
     `label--${size}`,
     icon ? 'label--with-icon' : '',
-    className || '' // کلاس‌های ورودی را اضافه می‌کنیم
-  ].filter(Boolean).join(' '); // فیلتر کردن مقادیر خالی و اتصال با فاصله
+    className || ''
+  ].filter(Boolean).join(' ');
 
   return (
-    <span
+    // ۴. ✨ از Component برای رندر کردن تگ داینامیک استفاده می‌کنیم
+    <Component
       className={labelClasses}
-      {...props} // تمام props های اضافی (مانند style, onClick) را به span پاس می‌دهیم
+      {...props} // پراپرتی‌های اضافی مانند htmlFor به درستی پاس داده می‌شوند
     >
       {icon && <span className="label__icon">{icon}</span>}
       {text}
-    </span>
+    </Component>
   );
 };
