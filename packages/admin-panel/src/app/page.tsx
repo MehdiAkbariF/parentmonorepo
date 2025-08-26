@@ -11,7 +11,7 @@ import {
   type ColumnDefinition,
 } from "@my-ds/design-system";
 
-import { getShops, type Shop } from "../services/shopService";
+import { getShops, type Shop } from "../services/shopsService";
 
 export default function HomePage() {
   const [shops, setShops] = useState<Shop[]>([]);

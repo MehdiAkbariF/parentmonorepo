@@ -1,17 +1,24 @@
-// ۱. یک تایپ برای کلیدهای ممکن تعریف می‌کنیم تا از خطاهای تایپی جلوگیری کنیم
-export type StatusKey = 'Confirmed' | 'InProgress' | 'Answered' | 'Pending' | 'Rejected' | 'Ok' | string;
+// ۱. تایپ StatusKey را با مقادیر جدید به‌روز می‌کنیم
+export type StatusKey = 
+  'Confirmed' | 
+  'InProgress' | 
+  'Answered' | 
+  'Rejected' | 
+  'Pending' | 
+  'Ok' | 
+  string;
 
-// ۲. دیکشنری ترجمه‌ها
+// ۲. دیکشنری ترجمه‌ها را با مقادیر جدید کامل می‌کنیم
 const statusTranslations: Record<StatusKey, string> = {
   // وضعیت‌های فروشگاه
-  Confirmed: 'تایید شده',
-  Pending: 'در انتظار بررسی',
-  Rejected: 'رد شده',
-  Ok: 'موفق', // این هم در API شما بود
+  'Confirmed': 'تایید شده',
+  'Pending': 'در انتظار بررسی',
+  'Rejected': 'رد شده',
+  'Ok': 'موفق',
   
-  // وضعیت‌های دیگر (که شما اشاره کردید)
-  InProgress: 'در حال بررسی',
-  Answered: 'پاسخ داده شده',
+  // ✨ --- وضعیت‌های جدید اضافه شدند ---
+  'InProgress': 'در حال بررسی',
+  'Answered': 'پاسخ داده شده',
 };
 
 /**

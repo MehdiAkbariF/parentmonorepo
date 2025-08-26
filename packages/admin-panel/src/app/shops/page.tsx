@@ -1,19 +1,26 @@
 "use client";
-import React, { useState, useEffect, useMemo, ReactNode } from "react"; // ۱. useMemo را ایمپورت می‌کنیم
+import React, { useState, useEffect, ReactNode, useCallback } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+// ۱. وارد کردن تمام کامپوننت‌ها و تایپ‌های لازم از سیستم طراحی
 import {
   YadakchiAdminLayout,
   ListPageLayout,
   Label,
+  FilterTabs,
+  Select,
   type ColumnDefinition,
+  type SelectOption,
 } from "@my-ds/design-system";
 
 // ۲. وارد کردن سرویس API و تایپ‌های مربوط به داده‌ها
-import { getShops, type Shop, type PaginatedResponse } from "../../services/shopService";
-// ۳. وارد کردن ابزارهای کمکی
+import { getShops, type Shop, type PaginatedResponse } from "../../services/shopsService";
+
+// ۳. وارد کردن ابزارهای کمکی و داده‌های فیلتر
 import { translateStatus } from "../../utils/translations";
 import { exportToExcel } from "../../utils/exportUtils";
+import { commonTimeFilters, shopStatusFilters, pageSizeOptions } from "../../config/filters.config";
 
 export default function ShopsPage() {
   // --- State Management ---
@@ -22,20 +29,26 @@ export default function ShopsPage() {
   const [isExporting, setIsExporting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
-  // State برای جستجو
+  // State های پجینیشن و فیلتر
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
+  const [activeTimeFilter, setActiveTimeFilter] = useState('newest');
+  const [selectedStatus, setSelectedStatus] = useState('all');
 
   const pathname = usePathname();
+  const router = useRouter();
   const renderLink = (href: string, children: ReactNode) => <Link href={href}>{children}</Link>;
 
   // --- Data Fetching ---
+  // این useEffect به تمام فیلترها و پجینیشن وابسته است
   useEffect(() => {
     const fetchShops = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await getShops(1, 30);
+        // در آینده، می‌توان پارامترهای فیلتر را به getShops پاس داد
+        const response = await getShops(currentPage, pageSize);
         setShopData(response);
       } catch (err) {
         setError(err instanceof Error ? err.message : "یک خطای ناشناخته رخ داد.");
@@ -44,29 +57,48 @@ export default function ShopsPage() {
       }
     };
     fetchShops();
-  }, []);
+  }, [currentPage, pageSize, activeTimeFilter, selectedStatus, searchTerm]);
 
   // --- Handlers ---
-  const handleViewShop = (shopId: string) => alert(`مشاهده: ${shopId}`);
+  const handleViewShop = (shopId: string) => {
+    router.push(`/shops/${shopId}`);
+  };
   const handleEditShop = (shopId: string) => alert(`ویرایش: ${shopId}`);
   const handleDeleteShop = (shopId: string) => alert(`حذف: ${shopId}`);
-
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+  const handlePageSizeChange = (size: number) => {
+    setPageSize(size);
+    setCurrentPage(1);
+  };
   const handleExport = async () => {
-    if (!shopData?.items?.length) return;
+    if (!shopData?.items?.length) {
+      alert("هیچ داده‌ای برای خروجی گرفتن وجود ندارد.");
+      return;
+    }
     setIsExporting(true);
     await new Promise(resolve => setTimeout(resolve, 500));
     const dataToExport = shopData.items.map(shop => ({
-      'نام فروشگاه': shop.shopTitle, 'نام فروشنده': `${shop.name} ${shop.lastname}`,
+      'نام فروشگاه': shop.shopTitle,
+      'نام فروشنده': `${shop.name} ${shop.lastname}`,
       'وضعیت': translateStatus(shop.registrationStatus),
       'تاریخ ثبت': new Date(shop.createDate).toLocaleDateString('fa-IR'),
     }));
     exportToExcel(dataToExport, "لیست_فروشگاه‌ها");
     setIsExporting(false);
   };
-
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
-    // در آینده، اینجا منطق جستجو و ارسال درخواست API قرار می‌گیرد.
+    setCurrentPage(1);
+  };
+  const handleTimeFilterChange = (tabId: string) => {
+    setActiveTimeFilter(tabId);
+    setCurrentPage(1);
+  };
+  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedStatus(event.target.value);
+    setCurrentPage(1);
   };
 
   // --- Column Definitions ---
@@ -78,6 +110,22 @@ export default function ShopsPage() {
   ];
   
   // --- Props Preparation ---
+  const filterSection = (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+      <FilterTabs
+        tabs={commonTimeFilters}
+        activeTab={activeTimeFilter}
+        onTabChange={handleTimeFilterChange}
+      />
+      <Select
+        options={shopStatusFilters}
+        value={selectedStatus}
+        onChange={handleStatusChange}
+        aria-label="فیلتر بر اساس وضعیت"
+      />
+    </div>
+  );
+  
   const listPageProps = {
     listPageHeaderProps: {
       title: "لیست فروشگاه‌ها",
@@ -86,7 +134,6 @@ export default function ShopsPage() {
         value: searchTerm,
         onChange: handleSearchChange,
         placeholder: "جستجو در فروشگاه‌ها...",
-        isLoading: isSearching,
       },
       exportButtonProps: {
         onClick: handleExport,
@@ -104,6 +151,15 @@ export default function ShopsPage() {
         onDelete: () => handleDeleteShop(shop.id),
       }),
     },
+    paginationProps: {
+      currentPage: currentPage,
+      pageSize: pageSize,
+      totalCount: shopData?.totalCount || 0,
+      onPageChange: handlePageChange,
+      pageSizeOptions: pageSizeOptions,
+      onPageSizeChange: handlePageSizeChange,
+    },
+    filterSection: filterSection,
     isLoading: isLoading,
     error: error,
   };
