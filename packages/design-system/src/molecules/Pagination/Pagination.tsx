@@ -12,38 +12,26 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
   const { onPageChange, currentPage, totalCount, pageSize, siblingCount } = props;
 
   const paginationRange = usePagination({ currentPage, totalCount, pageSize, siblingCount });
+  const lastPage = paginationRange ? paginationRange[paginationRange.length - 1] as number : 0;
 
-  if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
+  // ✨ --- شرط اصلاح شد --- ✨
+  // پجینیشن فقط زمانی نمایش داده می‌شود که بیش از یک صفحه وجود داشته باشد
+  if (totalCount <= pageSize) {
     return null;
   }
 
-  const lastPage = paginationRange ? paginationRange[paginationRange.length - 1] as number : 0;
-  
-  // ✨ --- تغییرات کلیدی در اینجا هستند ---
-
   const onNext = () => {
-    // اگر در صفحه آخر هستیم، هیچ کاری انجام نده
-    if (currentPage === lastPage) {
-      return;
-    }
+    if (currentPage === lastPage) return;
     onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
-    // اگر در صفحه اول هستیم، هیچ کاری انجام نده
-    if (currentPage === 1) {
-      return;
-    }
+    if (currentPage === 1) return;
     onPageChange(currentPage - 1);
   };
   
   return (
     <ul className="pagination">
-      {/* 
-        JSX بدون تغییر باقی می‌ماند. 
-        کلاس --disabled فقط برای ظاهر است.
-        منطق اصلی در توابع onNext و onPrevious قرار دارد.
-      */}
       <li
         className={`pagination__item ${currentPage === 1 ? 'pagination__item--disabled' : ''}`}
         onClick={onPrevious}
@@ -54,7 +42,6 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
         if (pageNumber === DOTS) {
           return <li key={index} className="pagination__item pagination__item--dots">&#8230;</li>;
         }
-
         return (
           <li
             key={index}

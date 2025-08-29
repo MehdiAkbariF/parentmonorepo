@@ -33,3 +33,4 @@ export * from "./templates/AdminPageLayout/ShopDetailPageLayout/ShopDetailPageLa
 export * from "./molecules/ShopDetailsCard/ShopDetailsCard";
 export * from "./molecules/ApprovalCard/ApprovalCard";
 export * from "./molecules/Modal/Modal";
+export * from "./molecules/FormModal/FormModal";

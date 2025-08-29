@@ -5,23 +5,20 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 export const Pagination = (props) => {
     const { onPageChange, currentPage, totalCount, pageSize, siblingCount } = props;
     const paginationRange = usePagination({ currentPage, totalCount, pageSize, siblingCount });
-    if (currentPage === 0 || (paginationRange && paginationRange.length < 2)) {
+    const lastPage = paginationRange ? paginationRange[paginationRange.length - 1] : 0;
+    // ✨ --- شرط اصلاح شد --- ✨
+    // پجینیشن فقط زمانی نمایش داده می‌شود که بیش از یک صفحه وجود داشته باشد
+    if (totalCount <= pageSize) {
         return null;
     }
-    const lastPage = paginationRange ? paginationRange[paginationRange.length - 1] : 0;
-    // ✨ --- تغییرات کلیدی در اینجا هستند ---
     const onNext = () => {
-        // اگر در صفحه آخر هستیم، هیچ کاری انجام نده
-        if (currentPage === lastPage) {
+        if (currentPage === lastPage)
             return;
-        }
         onPageChange(currentPage + 1);
     };
     const onPrevious = () => {
-        // اگر در صفحه اول هستیم، هیچ کاری انجام نده
-        if (currentPage === 1) {
+        if (currentPage === 1)
             return;
-        }
         onPageChange(currentPage - 1);
     };
     return (_jsxs("ul", { className: "pagination", children: [_jsx("li", { className: `pagination__item ${currentPage === 1 ? 'pagination__item--disabled' : ''}`, onClick: onPrevious, children: _jsx(FiChevronRight, {}) }), paginationRange?.map((pageNumber, index) => {

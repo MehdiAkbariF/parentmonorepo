@@ -6,16 +6,14 @@ type LabelOwnProps<E extends ElementType = ElementType> = {
     variant?: LabelVariant;
     size?: LabelSize;
     icon?: ReactNode;
-    /**
-     * تگ HTML یا کامپوننت React که باید رندر شود.
-     * @default 'span'
-     */
     as?: E;
+    /**
+     * ✨ پراپرتی جدید ✨
+     * اگر true باشد، متن طولانی را با "..." نمایش می‌دهد.
+     * @default true
+     */
+    truncate?: boolean;
 };
 export type LabelProps<E extends ElementType> = LabelOwnProps<E> & Omit<React.ComponentProps<E>, keyof LabelOwnProps<E>>;
-/**
- * Label یک اتم پلی‌مورفیک برای نمایش متن با استایل‌های از پیش تعریف شده است.
- * می‌تواند به عنوان span, label, p, h1 و ... رندر شود.
- */
-export declare const Label: <E extends ElementType = "span">({ text, variant, size, icon, as, className, ...props }: LabelProps<E>) => import("react/jsx-runtime").JSX.Element;
+export declare const Label: <E extends ElementType = "span">({ text, variant, size, icon, as, className, truncate, ...props }: LabelProps<E>) => import("react/jsx-runtime").JSX.Element;
 export {};

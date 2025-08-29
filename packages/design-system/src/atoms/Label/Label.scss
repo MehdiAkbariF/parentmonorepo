@@ -63,4 +63,15 @@
     align-items: center;
     gap: $spacing-2;
   }
+   &--truncate {
+    // این سه خط با هم جادو می‌کنند
+    white-space: nowrap; // ۱. جلوگیری از شکستن خط
+    overflow: hidden; // ۲. مخفی کردن متن اضافی
+    text-overflow: ellipsis; // ۳. نمایش "..."
+
+    // برای اینکه در کانتینرهای flex به درستی کار کند
+    display: inline-block;
+    vertical-align: middle; // تراز عمودی بهتر
+    max-width: 100%; // برای اینکه از والد خود بیرون نزند
+  }
 }

@@ -3,7 +3,7 @@ import { ActionButtonsProps } from "../ActionButtons/ActionButtons";
 export interface ColumnDefinition<T> {
     accessorKey: keyof T;
     header: string;
-    cell?: (item: T) => ReactNode;
+    cell?: (item: T, index: number) => ReactNode;
 }
 export interface TableProps<T> {
     data: T[];

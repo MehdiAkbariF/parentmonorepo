@@ -1,0 +1,49 @@
+@use "../../styles" as *;
+
+// این کامپوننت از استایل‌های پایه .modal که قبلاً نوشتیم، استفاده می‌کند.
+// ما در اینجا فقط استایل‌های خاص بدنه و فرم را بازنویسی و اضافه می‌کنیم.
+
+.form-modal {
+
+  &__body {
+    // ما از یک سلکتور عمومی برای تمام فرم‌های داخل مودال استفاده می‌کنیم
+    // تا به صورت خودکار استایل‌دهی شوند.
+    form {
+      display: flex;
+      flex-direction: column;
+      
+      // ۱. فاصله استاندارد بین تمام فیلدهای فرم
+      gap: $spacing-5; // 20px
+
+      // ۲. در صفحات کوچک، فاصله را کمی کمتر می‌کنیم
+      @media (max-width: $breakpoint-sm) {
+        gap: $spacing-4; // 16px
+      }
+    }
+
+    // ۳. استایل برای هر "ردیف" یا گروه در فرم
+    //    (مثلاً یک لیبل و یک اینپوت)
+    .input__container {
+  
+
+    }
+
+    // ۴. (اختیاری) استایل برای پیام‌های راهنما یا خطا زیر هر فیلد
+    .form-field__helper-text {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      margin-top: $spacing-2;
+      padding-inline-start: $spacing-1;
+    }
+    .form-field__error-text {
+      font-size: $font-size-xs;
+      color: $color-utility-error;
+      margin-top: $spacing-2;
+      padding-inline-start: $spacing-1;
+    }
+  }
+}
+
+
+.modal__footer {
+}

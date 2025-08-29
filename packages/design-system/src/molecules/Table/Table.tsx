@@ -7,7 +7,7 @@ import { ActionButtons, ActionButtonsProps } from "../ActionButtons/ActionButton
 export interface ColumnDefinition<T> {
   accessorKey: keyof T;
   header: string;
-  cell?: (item: T) => ReactNode;
+  cell?: (item: T, index: number) => ReactNode; // index اضافه شد
 }
 
 export interface TableProps<T> {
@@ -62,7 +62,7 @@ export const Table = <T extends { id?: string | number }>({
               {tableColumns.map((column, colIndex) => (
                 <td key={colIndex} className={`table__cell ${column.accessorKey === 'actions' ? 'table__cell--actions' : ''}`}>
                   {column.cell
-                    ? column.cell(item)
+                    ? column.cell(item, rowIndex)
                     : (item[column.accessorKey as keyof T] as ReactNode)}
                 </td>
               ))}

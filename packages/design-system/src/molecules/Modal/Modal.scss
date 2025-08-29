@@ -1,56 +1,57 @@
 @use "../../styles" as *;
 
-// --- ۱. تعریف Keyframes جدید برای انیمیشن‌های روان ---
+// --- Keyframes برای انیمیشن‌ها ---
 
-// انیمیشن محو شدن برای پس‌زمینه
+// انیمیشن محو شدن برای پس‌زمینه (overlay)
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-// انیمیشن ظاهر شدن دیالوگ از پایین و با کمی محو شدن
-@keyframes slideInUp {
+// انیمیشن ظاهر شدن دیالوگ با کمی مقیاس و محو شدن
+@keyframes scaleIn {
   from { 
     opacity: 0;
-    transform: translate(-50%, -45%); // کمی بالاتر از مرکز شروع می‌شود
+    transform: scale(0.95); // از کمی کوچکتر شروع می‌شود
   }
   to { 
     opacity: 1;
-    transform: translate(-50%, -50%); // به مرکز می‌رسد
+    transform: scale(1); // به اندازه اصلی می‌رسد
   }
 }
 
+// --- استایل‌های اصلی کامپوننت ---
+
 .modal {
   &__overlay {
+    // ۱. کل صفحه را می‌پوشاند و محتوا را در مرکز قرار می‌دهد
     position: fixed;
     inset: 0;
-    background-color: rgba($gray-900, 0.7); // کمی تیره‌تر برای کنتراست بهتر
+    background-color: rgba($gray-900, 0.6);
     z-index: $z-index-max;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; // وسط‌چین عمودی
+    justify-content: center; // وسط‌چین افقی
     padding: $spacing-4;
     
-    // ۲. ✨ اعمال انیمیشن سریع‌تر
-    animation: fadeIn 0.15s ease-out forwards;
+    // اعمال انیمیشن سریع
+    animation: fadeIn 0.2s ease-out forwards;
   }
 
   &__dialog {
     width: 100%;
-    max-width: 500px;
+    max-width: 500px; // عرض حداکثر برای دسکتاپ
     background-color: $color-bg-surface;
     border-radius: $radius-xl;
-    box-shadow: $shadow-2xl; // سایه برجسته‌تر
+    box-shadow: $shadow-2xl;
     display: flex;
     flex-direction: column;
     
-    // ۳. ✨ اعمال انیمیشن جدید و سریع
-    // ما دیگر از position: fixed در اینجا استفاده نمی‌کنیم
-    // چون والد (__overlay) این کار را انجام می‌دهد
-    animation: slideInUp 0.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    // ۲. اعمال انیمیشن جدید و روان
+    animation: scaleIn 0.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
 
-    // این به ما اجازه می‌دهد که وقتی محتوای مودال زیاد است، خود دیالوگ اسکرول بخورد
-    max-height: 90vh; 
+    // مدیریت ارتفاع در صفحات کوچک
+    max-height: 90vh;
   }
 
   &__header {
@@ -59,7 +60,7 @@
     justify-content: space-between;
     padding: $spacing-4 $spacing-6;
     border-bottom: 1px solid $color-border-secondary;
-    flex-shrink: 0;
+    flex-shrink: 0; // جلوگیری از کوچک شدن
   }
 
   &__body {
@@ -79,5 +80,10 @@
     flex-shrink: 0;
     border-bottom-left-radius: $radius-xl;
     border-bottom-right-radius: $radius-xl;
+  }
+
+  // استایل برای فوتر فرم‌ها (که قبلاً ساختیم)
+  &.form-modal .modal__footer {
+    justify-content: space-between;
   }
 }

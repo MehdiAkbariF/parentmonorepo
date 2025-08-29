@@ -26,6 +26,6 @@ export const Table = ({ data, columns, emptyStateMessage = "هیچ داده‌ا
     _jsx("div", { className: "table-wrapper", children: _jsxs("table", { className: "table", children: [_jsx("thead", { className: "table__head", children: _jsx("tr", { children: tableColumns.map((column) => (_jsx("th", { children: column.header }, column.accessorKey))) }) }), _jsx("tbody", { className: "table__body", children: data.map((item, rowIndex) => (
                     // ۳. ساختار JSX بسیار ساده شد. فقط یک <tr> برای هر آیتم.
                     _jsx("tr", { className: "table__row", children: tableColumns.map((column, colIndex) => (_jsx("td", { className: `table__cell ${column.accessorKey === 'actions' ? 'table__cell--actions' : ''}`, children: column.cell
-                                ? column.cell(item)
+                                ? column.cell(item, rowIndex)
                                 : item[column.accessorKey] }, colIndex))) }, item.id || rowIndex))) })] }) }));
 };
