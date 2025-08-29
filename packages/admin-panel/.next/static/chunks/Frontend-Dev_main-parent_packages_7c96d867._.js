@@ -160,20 +160,20 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/node_modules/.pnpm/next@15.5.0_react-dom@19.1._b13a0a4285dbe16cf3c4aa2d431c8eb3/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
 ;
 const Label = (param)=>{
-    let { text, variant = "primary", size = "md", icon, as, className, ...props // بقیه props ها (مانند htmlFor, style) در اینجا قرار می‌گیرند
-     } = param;
-    // ۳. ✨ تگ مورد نظر را برای رندر شدن انتخاب می‌کنیم
+    let { text, variant = "primary", size = "md", icon, as, className, truncate = false, ...props } = param;
     const Component = as || 'span';
     const labelClasses = [
         'label',
         "label--".concat(variant),
         "label--".concat(size),
         icon ? 'label--with-icon' : '',
+        truncate ? 'label--truncate' : '',
         className || ''
     ].filter(Boolean).join(' ');
-    return(// ۴. ✨ از Component برای رندر کردن تگ داینامیک استفاده می‌کنیم
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxs"])(Component, {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxs"])(Component, {
         className: labelClasses,
+        // ✨ برای UX بهتر، متن کامل را در title قرار می‌دهیم تا با هاور نمایش داده شود
+        title: truncate ? text : undefined,
         ...props,
         children: [
             icon && (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])("span", {
@@ -182,7 +182,7 @@ const Label = (param)=>{
             }),
             text
         ]
-    }));
+    });
 };
 _c = Label;
 var _c;
@@ -707,64 +707,13 @@ var _s = __turbopack_context__.k.signature();
 // داده‌های ثابت و مختص این لی‌آوت (بدون تغییر)
 const menuItems = [
     {
-        label: "فروشگاه‌ها",
+        label: "گارانتی",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaStore"],
         submenu: [
             {
-                href: "/shops",
-                label: "لیست فروشگاه‌ها",
+                href: "/warranty",
+                label: "گارانتی",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaListAlt"]
-            },
-            {
-                href: "/shops/badges",
-                label: "بج ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaAward"]
-            },
-            {
-                href: "/shops/comments",
-                label: "کامنت ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaComments"]
-            },
-            {
-                href: "/shops/category",
-                label: "دسته بندی فروشندگان",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaSitemap"]
-            },
-            {
-                href: "/shops/rules",
-                label: "قوانین تایید فروشگاه",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaGavel"]
-            },
-            {
-                href: "/shops/images",
-                label: "عکس های ارسالی",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaImages"]
-            },
-            {
-                href: "/shops/videos",
-                label: "ویدیو های ارسالی",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaVideo"]
-            },
-            {
-                label: "گزارش‌ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaFlag"],
-                submenu: [
-                    {
-                        href: "/shops/reports/types",
-                        label: "انواع گزارش",
-                        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaLayerGroup"]
-                    },
-                    {
-                        href: "/shops/reports/list",
-                        label: "گزارش ها",
-                        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaFlag"]
-                    },
-                    {
-                        href: "/shops/reports/subjects",
-                        label: "موضوعات گزارش ها",
-                        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaClipboardList"]
-                    }
-                ]
             }
         ]
     },
@@ -776,33 +725,11 @@ const menuItems = [
                 href: "/tickets",
                 label: "لیست تیکت‌ها",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaListAlt"]
-            }
-        ]
-    },
-    {
-        label: "بانک",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaStore"],
-        submenu: [
-            {
-                href: "/bank/banks",
-                label: "لیست بانک ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaListAlt"]
             },
             {
-                href: "/bank/currencies",
-                label: "ارز ها",
+                href: "/ticket-categories",
+                label: "مدیریت دسته بندی",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaListAlt"]
-            }
-        ]
-    },
-    {
-        label: "سوالات متداول",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaQuestionCircle"],
-        submenu: [
-            {
-                href: "/faq",
-                label: "مدیریت سوالات متداول",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaQuestionCircle"]
             }
         ]
     }
@@ -839,12 +766,12 @@ const YadakchiAdminLayout = (param)=>{
     // ۳. جهت به صورت ثابت در useEffect تعریف می‌شود
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "YadakchiAdminLayout.useEffect": ()=>{
-            document.documentElement.dir = 'rtl';
-            document.documentElement.lang = 'fa';
+            document.documentElement.dir = "rtl";
+            document.documentElement.lang = "fa";
         }
     }["YadakchiAdminLayout.useEffect"], []); // فقط یک بار در ابتدا اجرا می‌شود
     const sidebarProps = {
-        appName: "پنل یدکچی",
+        appName: "پنل یدکی ران",
         logo: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaShieldAlt"], {}),
         menuItems: menuItems,
         footerItems: footerItems,
@@ -1141,7 +1068,7 @@ const Table = (param)=>{
                             className: "table__row",
                             children: tableColumns.map((column, colIndex)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsx"])("td", {
                                     className: "table__cell ".concat(column.accessorKey === 'actions' ? 'table__cell--actions' : ''),
-                                    children: column.cell ? column.cell(item) : item[column.accessorKey]
+                                    children: column.cell ? column.cell(item, rowIndex) : item[column.accessorKey]
                                 }, colIndex))
                         }, item.id || rowIndex))
                 })
@@ -1269,23 +1196,18 @@ const Pagination = (props)=>{
         pageSize,
         siblingCount
     });
-    if (currentPage === 0 || paginationRange && paginationRange.length < 2) {
+    const lastPage = paginationRange ? paginationRange[paginationRange.length - 1] : 0;
+    // ✨ --- شرط اصلاح شد --- ✨
+    // پجینیشن فقط زمانی نمایش داده می‌شود که بیش از یک صفحه وجود داشته باشد
+    if (totalCount <= pageSize) {
         return null;
     }
-    const lastPage = paginationRange ? paginationRange[paginationRange.length - 1] : 0;
-    // ✨ --- تغییرات کلیدی در اینجا هستند ---
     const onNext = ()=>{
-        // اگر در صفحه آخر هستیم، هیچ کاری انجام نده
-        if (currentPage === lastPage) {
-            return;
-        }
+        if (currentPage === lastPage) return;
         onPageChange(currentPage + 1);
     };
     const onPrevious = ()=>{
-        // اگر در صفحه اول هستیم، هیچ کاری انجام نده
-        if (currentPage === 1) {
-            return;
-        }
+        if (currentPage === 1) return;
         onPageChange(currentPage - 1);
     };
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxs"])("ul", {
@@ -1504,35 +1426,57 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.createApiClient = createApiClient;
-function createApiClient(baseUrl, getToken) {
+/**
+ * یک کلاینت API قابل استفاده مجدد ایجاد می‌کند.
+ * @param baseUrl آدرس پایه API (مثلاً '/api')
+ * @param getToken (اختیاری) یک تابع که توکن احراز هویت را برمی‌گرداند
+ */ function createApiClient(baseUrl, getToken) {
+    // تابع داخلی و خصوصی برای ارسال تمام درخواست‌ها
     const request = async function(method, endpoint) {
         let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-        // ... منطق داخلی request بدون تغییر باقی می‌ماند ...
         const { params, body, headers = {} } = options;
+        // ساخت query string از پارامترها
         const query = params ? "?".concat(new URLSearchParams(params).toString()) : '';
         const url = "".concat(baseUrl, "/").concat(endpoint).concat(query);
+        // گرفتن توکن در لحظه ارسال درخواست
         const token = getToken === null || getToken === void 0 ? void 0 : getToken();
         const isFormData = body instanceof FormData;
+        // ساخت هدرهای نهایی
         const finalHeaders = Object.assign(Object.assign(Object.assign({}, isFormData ? {} : {
             'Content-Type': 'application/json'
         }), token ? {
             Authorization: "Bearer ".concat(token)
         } : {}), headers);
+        // ارسال درخواست با استفاده از fetch API
         const response = await fetch(url, {
             method,
             headers: finalHeaders,
             body: method !== 'GET' && body ? isFormData ? body : JSON.stringify(body) : undefined
         });
+        // مدیریت خطاهای HTTP (مانند 401, 404, 500)
         if (!response.ok) {
             const errorData = await response.json().catch(()=>({
                     message: response.statusText
                 }));
             throw new Error(errorData.message || "Request failed with status ".concat(response.status));
         }
-        if (response.status === 204) return null;
-        return response.json();
+        // ✨ --- منطق هوشمند برای پردازش پاسخ --- ✨
+        // ۱. بررسی می‌کنیم که آیا پاسخ بدنه دارد یا نه
+        const contentType = response.headers.get("content-type");
+        const contentLength = response.headers.get("content-length");
+        // اگر پاسخ 204 (No Content) بود یا هیچ محتوایی نداشت، null برگردان
+        if (response.status === 204 || contentLength === '0') {
+            return null;
+        }
+        // اگر محتوا از نوع JSON بود، آن را parse کن
+        if (contentType && contentType.includes("application/json")) {
+            return response.json();
+        }
+        // برای انواع دیگر محتوا (مانند text/plain)، خود پاسخ را برمی‌گردانیم
+        // در غیر این صورت، null برگردان
+        return response.text();
     };
-    // ✨ --- تغییرات کلیدی در اینجا هستند ---
+    // برگرداندن آبجکتی با متدهای عمومی
     return {
         get: (endpoint, options)=>request('GET', endpoint, options),
         post: (endpoint, options)=>request('POST', endpoint, options),
@@ -1564,7 +1508,7 @@ const getToken = ()=>{
     // مثال: return localStorage.getItem('authToken');
     }
     // توکن نمونه شما:
-    return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTI3MzA1ZS1kYWZiLTRjZjEtYmMyOC1kMTViN2I0ODhjYzUiLCJuYmYiOjE3NTYxOTk1MDMsImV4cCI6MTc2NjE5OTQwMywiaXNzIjoiWWFkYWtjaGkiLCJhdWQiOiJmcm9udC5sb3R0ZXN0LmlyIn0.cnraf4kqlf_imZuhFg6GXoZ3RCJcHIqELJo3vU6VbDPScochuCz1mvLDogc2bJAc32e4Khikd2G08CyTLcDKiQ";
+    return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxNDdhZGM4NS00NmEzLTRiNzEtYWEzZi01MWExMjliZmY4NTgiLCJuYmYiOjE3NTY0Njk3ODcsImV4cCI6MTc2NjQ2OTY4NywiaXNzIjoiWWFkYWtjaGkiLCJhdWQiOiJmcm9udC5sb3R0ZXN0LmlyIn0.Mr2MoA4vBcuHtLhfRz59B0IrRPW5dTU5VFtBxQuMhVeYoCUGvXdigCZXnVfWM8UU6svOMUE2FiTJiUaVE00xdA";
 };
 // ۳. ایجاد یک نمونه (instance) از کلاینت API با استفاده از متغیر محیطی
 //    ما از /api/ به عنوان baseUrl استفاده می‌کنیم تا درخواست‌ها به پروکسی Next.js ارسال شوند
@@ -1781,7 +1725,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$p
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$atoms$2f$Label$2f$Label$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/packages/design-system/dist/atoms/Label/Label.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$FilterTabs$2f$FilterTabs$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/packages/design-system/dist/molecules/FilterTabs/FilterTabs.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$atoms$2f$Select$2f$Select$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/packages/design-system/dist/atoms/Select/Select.js [app-client] (ecmascript)");
-// ۲. وارد کردن سرویس API و تایپ‌های مربوط به داده‌ها
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$shopsService$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/packages/admin-panel/src/services/shopsService.ts [app-client] (ecmascript)");
 // ۳. وارد کردن ابزارهای کمکی و داده‌های فیلتر
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$utils$2f$translations$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/packages/admin-panel/src/utils/translations.ts [app-client] (ecmascript)");

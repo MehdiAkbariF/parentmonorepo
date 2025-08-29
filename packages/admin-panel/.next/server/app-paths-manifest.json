@@ -1,6 +1,10 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js",
   "/shops/[id]/page": "app/shops/[id]/page.js",
-  "/shops/page": "app/shops/page.js"
+  "/shops/page": "app/shops/page.js",
+  "/ticket-categories/page": "app/ticket-categories/page.js",
+  "/tickets/page": "app/tickets/page.js",
+  "/warranty/[id]/page": "app/warranty/[id]/page.js",
+  "/warranty/page": "app/warranty/page.js"
 }

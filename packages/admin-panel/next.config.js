@@ -2,30 +2,25 @@
 const nextConfig = {
   reactStrictMode: true,
 
-  // این بخش برای بهینه‌سازی تصاویر است و می‌تواند باقی بماند
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'api.yadakchi.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.pravatar.cc',
-      },
+      { protocol: 'https', hostname: 'api.yadakchi.com' },
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'i.pravatar.cc' },
     ],
   },
   
-  // این بخش اصلی برای حل مشکل CORS است
   async rewrites() {
+    // ۱. ✨ یک مقدار پیش‌فرض برای baseUrl تعریف می‌کنیم
+    const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:5000';
+    console.log(`Rewriting API calls to: ${apiBaseUrl}`); // ۲. ✨ یک لاگ برای عیب‌یابی اضافه می‌کنیم
+
     return [
       {
-        // هر درخواستی که به /api/ در پروژه شما ارسال شود...
         source: '/api/:path*',
-        // ...به آدرس API اصلی شما هدایت (پروکسی) می‌شود.
-        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/:path*`,
+        // ۳. ✨ از متغیر محلی با مقدار پیش‌فرض استفاده می‌کنیم
+        destination: `${apiBaseUrl}/api/:path*`,
       },
-      // شما می‌توانید قوانین دیگری نیز در اینجا اضافه کنید
     ]
   },
 }

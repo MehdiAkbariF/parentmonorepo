@@ -1,49 +1,7 @@
 import apiClient from "./apiClient";
+import type { PaginatedResponse, Shop, ShopConfirmationData } from './api/types';
 
-export interface Shop {
-  id: string;
-  name: string;
-  lastname: string;
-  shopTitle: string;
-  phoneNumber: string | null;
-  description: string;
-  website: string;
-  tell: string;
-  status: string;
-  registrationStatus: "Confirmed" | "InProgress" | "Answered" | "Rejected";
-  createDate: string;
-  updateDate: string;
-  logo: string | null;
-  isLogoConfirmed: boolean;
-  isShopTitleConfirmed: boolean;
-  isTellConfirmed: boolean;
-  businessLicense: string | null;
-  nationalCard: string | null;
-  behindNationalCard: string | null;
-  isBusinessLicenseConfirmed: boolean;
-  isNationalCardConfirmed: boolean;
-  isBehindNationalCardConfirmed: boolean;
-  isBanned?: boolean;
-  isActive?: boolean;
-}
 
-export interface PaginatedResponse<T> {
-  currentPage: number;
-  totalPages: number;
-  pageSize: number;
-  totalCount: number;
-  items: T[];
-}
-
-export type ShopConfirmationData = {
-  ShopId: string;
-  IsLogoConfirmed?: boolean;
-  IsShopTitleConfirmed?: boolean;
-  IsBusinessLicenseConfirmed?: boolean;
-  IsNationalCardConfirmed?: boolean;
-  IsBehindNationalCardConfirmed?: boolean;
-  IsTellConfirmed?: boolean;
-};
 
 /**
  * لیستی از فروشگاه‌ها را واکشی می‌کند.

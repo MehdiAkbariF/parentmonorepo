@@ -60,6 +60,30 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   handler satisfies AppPageConfig<"/shops">
 }
 
+// Validate ..\..\src\app\ticket-categories\page.tsx
+{
+  const handler = {} as typeof import("..\\..\\src\\app\\ticket-categories\\page.js")
+  handler satisfies AppPageConfig<"/ticket-categories">
+}
+
+// Validate ..\..\src\app\tickets\page.tsx
+{
+  const handler = {} as typeof import("..\\..\\src\\app\\tickets\\page.js")
+  handler satisfies AppPageConfig<"/tickets">
+}
+
+// Validate ..\..\src\app\warranty\[id]\page.tsx
+{
+  const handler = {} as typeof import("..\\..\\src\\app\\warranty\\[id]\\page.js")
+  handler satisfies AppPageConfig<"/warranty/[id]">
+}
+
+// Validate ..\..\src\app\warranty\page.tsx
+{
+  const handler = {} as typeof import("..\\..\\src\\app\\warranty\\page.js")
+  handler satisfies AppPageConfig<"/warranty">
+}
+
 
 
 

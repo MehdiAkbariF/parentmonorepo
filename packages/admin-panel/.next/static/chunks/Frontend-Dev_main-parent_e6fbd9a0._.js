@@ -6,49 +6,35 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.createApiClient = createApiClient;
-// ۲. تعریف تابع اصلی
-/**
- * یک کلاینت API قابل استفاده مجدد ایجاد می‌کند.
- * @param baseUrl آدرس پایه API (مثلاً 'https://api.example.com/api')
- * @param getToken (اختیاری) یک تابع که توکن احراز هویت را برمی‌گرداند
- */ function createApiClient(baseUrl, getToken) {
-    // تابع داخلی و خصوصی برای ارسال درخواست‌ها
+function createApiClient(baseUrl, getToken) {
     const request = async function(method, endpoint) {
         let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
+        // ... منطق داخلی request بدون تغییر باقی می‌ماند ...
         const { params, body, headers = {} } = options;
-        // ساخت query string از پارامترها
         const query = params ? "?".concat(new URLSearchParams(params).toString()) : '';
         const url = "".concat(baseUrl, "/").concat(endpoint).concat(query);
-        // گرفتن توکن در لحظه ارسال درخواست
         const token = getToken === null || getToken === void 0 ? void 0 : getToken();
         const isFormData = body instanceof FormData;
-        // ساخت هدرهای نهایی
         const finalHeaders = Object.assign(Object.assign(Object.assign({}, isFormData ? {} : {
             'Content-Type': 'application/json'
         }), token ? {
             Authorization: "Bearer ".concat(token)
         } : {}), headers);
-        // ارسال درخواست با استفاده از fetch API
         const response = await fetch(url, {
             method,
             headers: finalHeaders,
             body: method !== 'GET' && body ? isFormData ? body : JSON.stringify(body) : undefined
         });
-        // مدیریت خطاها
         if (!response.ok) {
-            // می‌توانید منطق پیچیده‌تری برای مدیریت خطاها اینجا اضافه کنید
             const errorData = await response.json().catch(()=>({
                     message: response.statusText
                 }));
             throw new Error(errorData.message || "Request failed with status ".concat(response.status));
         }
-        // اگر پاسخ محتوا نداشت (مثلاً در 204 No Content)
-        if (response.status === 204) {
-            return null;
-        }
+        if (response.status === 204) return null;
         return response.json();
     };
-    // ۳. برگرداندن آبجکتی با متدهای عمومی
+    // ✨ --- تغییرات کلیدی در اینجا هستند ---
     return {
         get: (endpoint, options)=>request('GET', endpoint, options),
         post: (endpoint, options)=>request('POST', endpoint, options),
@@ -80,7 +66,7 @@ const getToken = ()=>{
     // مثال: return localStorage.getItem('authToken');
     }
     // توکن نمونه شما:
-    return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3NTYxOTE2ODUsImV4cCI6MTc2NjE5MTU4NSwiaXNzIjoiWWFkYWtjaGkiLCJhdWQiOiJmcm9udC5sb3R0ZXN0LmlyIn0.w93hU4ZbbbvHi2desHqbDOcV8Y7x-DtiltLwZKMpqdXxrykgrJiBfXJgK-LqWgwNKy5cXQimsPIBWw8-FSJQug";
+    return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTI3MzA1ZS1kYWZiLTRjZjEtYmMyOC1kMTViN2I0ODhjYzUiLCJuYmYiOjE3NTYxOTk1MDMsImV4cCI6MTc2NjE5OTQwMywiaXNzIjoiWWFkYWtjaGkiLCJhdWQiOiJmcm9udC5sb3R0ZXN0LmlyIn0.cnraf4kqlf_imZuhFg6GXoZ3RCJcHIqELJo3vU6VbDPScochuCz1mvLDogc2bJAc32e4Khikd2G08CyTLcDKiQ";
 };
 // ۳. ایجاد یک نمونه (instance) از کلاینت API با استفاده از متغیر محیطی
 //    ما از /api/ به عنوان baseUrl استفاده می‌کنیم تا درخواست‌ها به پروکسی Next.js ارسال شوند
@@ -94,6 +80,10 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "confirmFinalShopStatus",
+    ()=>confirmFinalShopStatus,
+    "confirmShopRegistration",
+    ()=>confirmShopRegistration,
     "getShopById",
     ()=>getShopById,
     "getShops",
@@ -102,25 +92,39 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Frontend-Dev/main-parent/packages/admin-panel/src/services/apiClient.ts [app-client] (ecmascript)");
 ;
 const getShops = (pageNumber, pageSize)=>{
-    return __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get('A_Shop/Shop', {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get('A_Shop/GetShops', {
         params: {
             PageNumber: pageNumber,
             PageSize: pageSize
         }
     });
 };
-const getShopById = async (shopId)=>{
-    const response = await __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get('A_Shop/Shop', {
+const getShopById = (shopId)=>{
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get('A_Shop/GetShopDetail', {
         params: {
-            Ids: shopId,
-            PageNumber: 1,
-            PageSize: 1
+            Id: shopId
         }
     });
-    if (response && response.items && response.items.length > 0) {
-        return response.items[0];
-    }
-    throw new Error("فروشگاهی با شناسه ".concat(shopId, " یافت نشد."));
+};
+const confirmShopRegistration = (confirmationData)=>{
+    const formData = new FormData();
+    Object.keys(confirmationData).forEach((key)=>{
+        const value = confirmationData[key];
+        if (value !== undefined) {
+            formData.append(key, String(value));
+        }
+    });
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].put('A_Shop/ShopConfirmRegistration', {
+        body: formData
+    });
+};
+const confirmFinalShopStatus = (shopId)=>{
+    return __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$admin$2d$panel$2f$src$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].put('A_Shop/ConfirmShop', {
+        params: {
+            ShopId: shopId,
+            Status: 'Confirmed'
+        }
+    });
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);

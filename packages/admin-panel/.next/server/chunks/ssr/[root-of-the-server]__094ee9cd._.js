@@ -614,64 +614,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 // داده‌های ثابت و مختص این لی‌آوت (بدون تغییر)
 const menuItems = [
     {
-        label: "فروشگاه‌ها",
+        label: "گارانتی",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaStore"],
         submenu: [
             {
-                href: "/shops",
-                label: "لیست فروشگاه‌ها",
+                href: "/warranty",
+                label: "گارانتی",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaListAlt"]
-            },
-            {
-                href: "/shops/badges",
-                label: "بج ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaAward"]
-            },
-            {
-                href: "/shops/comments",
-                label: "کامنت ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaComments"]
-            },
-            {
-                href: "/shops/category",
-                label: "دسته بندی فروشندگان",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaSitemap"]
-            },
-            {
-                href: "/shops/rules",
-                label: "قوانین تایید فروشگاه",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaGavel"]
-            },
-            {
-                href: "/shops/images",
-                label: "عکس های ارسالی",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaImages"]
-            },
-            {
-                href: "/shops/videos",
-                label: "ویدیو های ارسالی",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaVideo"]
-            },
-            {
-                label: "گزارش‌ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaFlag"],
-                submenu: [
-                    {
-                        href: "/shops/reports/types",
-                        label: "انواع گزارش",
-                        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaLayerGroup"]
-                    },
-                    {
-                        href: "/shops/reports/list",
-                        label: "گزارش ها",
-                        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaFlag"]
-                    },
-                    {
-                        href: "/shops/reports/subjects",
-                        label: "موضوعات گزارش ها",
-                        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaClipboardList"]
-                    }
-                ]
             }
         ]
     },
@@ -683,33 +632,11 @@ const menuItems = [
                 href: "/tickets",
                 label: "لیست تیکت‌ها",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaListAlt"]
-            }
-        ]
-    },
-    {
-        label: "بانک",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaStore"],
-        submenu: [
-            {
-                href: "/bank/banks",
-                label: "لیست بانک ها",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaListAlt"]
             },
             {
-                href: "/bank/currencies",
-                label: "ارز ها",
+                href: "/ticket-categories",
+                label: "مدیریت دسته بندی",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaListAlt"]
-            }
-        ]
-    },
-    {
-        label: "سوالات متداول",
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaQuestionCircle"],
-        submenu: [
-            {
-                href: "/faq",
-                label: "مدیریت سوالات متداول",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaQuestionCircle"]
             }
         ]
     }
@@ -743,11 +670,11 @@ const YadakchiAdminLayout = ({ children, currentPath, renderLink })=>{
     const [isPinned, setIsPinned] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     // ۳. جهت به صورت ثابت در useEffect تعریف می‌شود
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        document.documentElement.dir = 'rtl';
-        document.documentElement.lang = 'fa';
+        document.documentElement.dir = "rtl";
+        document.documentElement.lang = "fa";
     }, []); // فقط یک بار در ابتدا اجرا می‌شود
     const sidebarProps = {
-        appName: "پنل یدکچی",
+        appName: "پنل یدکی ران",
         logo: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsx"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaShieldAlt"], {}),
         menuItems: menuItems,
         footerItems: footerItems,
@@ -1157,34 +1084,56 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.createApiClient = createApiClient;
-function createApiClient(baseUrl, getToken) {
+/**
+ * یک کلاینت API قابل استفاده مجدد ایجاد می‌کند.
+ * @param baseUrl آدرس پایه API (مثلاً '/api')
+ * @param getToken (اختیاری) یک تابع که توکن احراز هویت را برمی‌گرداند
+ */ function createApiClient(baseUrl, getToken) {
+    // تابع داخلی و خصوصی برای ارسال تمام درخواست‌ها
     const request = async (method, endpoint, options = {})=>{
-        // ... منطق داخلی request بدون تغییر باقی می‌ماند ...
         const { params, body, headers = {} } = options;
+        // ساخت query string از پارامترها
         const query = params ? `?${new URLSearchParams(params).toString()}` : '';
         const url = `${baseUrl}/${endpoint}${query}`;
+        // گرفتن توکن در لحظه ارسال درخواست
         const token = getToken === null || getToken === void 0 ? void 0 : getToken();
         const isFormData = body instanceof FormData;
+        // ساخت هدرهای نهایی
         const finalHeaders = Object.assign(Object.assign(Object.assign({}, isFormData ? {} : {
             'Content-Type': 'application/json'
         }), token ? {
             Authorization: `Bearer ${token}`
         } : {}), headers);
+        // ارسال درخواست با استفاده از fetch API
         const response = await fetch(url, {
             method,
             headers: finalHeaders,
             body: method !== 'GET' && body ? isFormData ? body : JSON.stringify(body) : undefined
         });
+        // مدیریت خطاهای HTTP (مانند 401, 404, 500)
         if (!response.ok) {
             const errorData = await response.json().catch(()=>({
                     message: response.statusText
                 }));
             throw new Error(errorData.message || `Request failed with status ${response.status}`);
         }
-        if (response.status === 204) return null;
-        return response.json();
+        // ✨ --- منطق هوشمند برای پردازش پاسخ --- ✨
+        // ۱. بررسی می‌کنیم که آیا پاسخ بدنه دارد یا نه
+        const contentType = response.headers.get("content-type");
+        const contentLength = response.headers.get("content-length");
+        // اگر پاسخ 204 (No Content) بود یا هیچ محتوایی نداشت، null برگردان
+        if (response.status === 204 || contentLength === '0') {
+            return null;
+        }
+        // اگر محتوا از نوع JSON بود، آن را parse کن
+        if (contentType && contentType.includes("application/json")) {
+            return response.json();
+        }
+        // برای انواع دیگر محتوا (مانند text/plain)، خود پاسخ را برمی‌گردانیم
+        // در غیر این صورت، null برگردان
+        return response.text();
     };
-    // ✨ --- تغییرات کلیدی در اینجا هستند ---
+    // برگرداندن آبجکتی با متدهای عمومی
     return {
         get: (endpoint, options)=>request('GET', endpoint, options),
         post: (endpoint, options)=>request('POST', endpoint, options),
@@ -1213,7 +1162,7 @@ const getToken = ()=>{
     // مثال: return localStorage.getItem('authToken');
     }
     // توکن نمونه شما:
-    return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTI3MzA1ZS1kYWZiLTRjZjEtYmMyOC1kMTViN2I0ODhjYzUiLCJuYmYiOjE3NTYxOTk1MDMsImV4cCI6MTc2NjE5OTQwMywiaXNzIjoiWWFkYWtjaGkiLCJhdWQiOiJmcm9udC5sb3R0ZXN0LmlyIn0.cnraf4kqlf_imZuhFg6GXoZ3RCJcHIqELJo3vU6VbDPScochuCz1mvLDogc2bJAc32e4Khikd2G08CyTLcDKiQ";
+    return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxNDdhZGM4NS00NmEzLTRiNzEtYWEzZi01MWExMjliZmY4NTgiLCJuYmYiOjE3NTY0Njk3ODcsImV4cCI6MTc2NjQ2OTY4NywiaXNzIjoiWWFkYWtjaGkiLCJhdWQiOiJmcm9udC5sb3R0ZXN0LmlyIn0.Mr2MoA4vBcuHtLhfRz59B0IrRPW5dTU5VFtBxQuMhVeYoCUGvXdigCZXnVfWM8UU6svOMUE2FiTJiUaVE00xdA";
 };
 // ۳. ایجاد یک نمونه (instance) از کلاینت API با استفاده از متغیر محیطی
 //    ما از /api/ به عنوان baseUrl استفاده می‌کنیم تا درخواست‌ها به پروکسی Next.js ارسال شوند
@@ -1336,7 +1285,7 @@ function ShopDetailsPage({ params }) {
             children: children
         }, void 0, false, {
             fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-            lineNumber: 37,
+            lineNumber: 38,
             columnNumber: 61
         }, this);
     // تابع واکشی داده‌ها
@@ -1402,7 +1351,7 @@ function ShopDetailsPage({ params }) {
             children: "در حال بارگذاری اطلاعات فروشگاه..."
         }, void 0, false, {
             fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-            lineNumber: 99,
+            lineNumber: 100,
             columnNumber: 27
         }, this);
         if (error) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1415,14 +1364,14 @@ function ShopDetailsPage({ params }) {
             ]
         }, void 0, true, {
             fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-            lineNumber: 100,
+            lineNumber: 101,
             columnNumber: 23
         }, this);
         if (!shop) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
             children: "اطلاعات فروشگاه یافت نشد."
         }, void 0, false, {
             fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-            lineNumber: 101,
+            lineNumber: 102,
             columnNumber: 23
         }, this);
         // شرط برای غیرفعال کردن دکمه تایید نهایی
@@ -1442,12 +1391,12 @@ function ShopDetailsPage({ params }) {
                         variant: shop.registrationStatus === 'Confirmed' ? 'success' : 'warning'
                     }, void 0, false, {
                         fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                        lineNumber: 112,
+                        lineNumber: 113,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                    lineNumber: 108,
+                    lineNumber: 109,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$ActionToolbar$2f$ActionToolbar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ActionToolbar"], {
@@ -1464,25 +1413,25 @@ function ShopDetailsPage({ params }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 127,
+                                lineNumber: 128,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: isConfirmDisabled ? 'فروشگاه تایید شده' : 'تایید نهایی فروشگاه'
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 128,
+                                lineNumber: 129,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                        lineNumber: 121,
+                        lineNumber: 122,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                    lineNumber: 119,
+                    lineNumber: 120,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$InfoCard$2f$InfoCard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["InfoCard"], {
@@ -1503,7 +1452,7 @@ function ShopDetailsPage({ params }) {
                     ]
                 }, void 0, false, {
                     fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                    lineNumber: 132,
+                    lineNumber: 133,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$InfoCard$2f$InfoCard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["InfoCard"], {
@@ -1524,7 +1473,7 @@ function ShopDetailsPage({ params }) {
                                 isLoading: actionLoading
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 143,
+                                lineNumber: 144,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$ApprovalCard$2f$ApprovalCard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ApprovalCard"], {
@@ -1535,7 +1484,7 @@ function ShopDetailsPage({ params }) {
                                 isLoading: actionLoading
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 151,
+                                lineNumber: 152,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$ApprovalCard$2f$ApprovalCard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ApprovalCard"], {
@@ -1547,7 +1496,7 @@ function ShopDetailsPage({ params }) {
                                 isLoading: actionLoading
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 158,
+                                lineNumber: 159,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$ApprovalCard$2f$ApprovalCard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ApprovalCard"], {
@@ -1559,7 +1508,7 @@ function ShopDetailsPage({ params }) {
                                 isLoading: actionLoading
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 166,
+                                lineNumber: 167,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$packages$2f$design$2d$system$2f$dist$2f$molecules$2f$ApprovalCard$2f$ApprovalCard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ApprovalCard"], {
@@ -1570,24 +1519,24 @@ function ShopDetailsPage({ params }) {
                                 isLoading: actionLoading
                             }, void 0, false, {
                                 fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                                lineNumber: 174,
+                                lineNumber: 175,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                        lineNumber: 142,
+                        lineNumber: 143,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-                    lineNumber: 141,
+                    lineNumber: 142,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-            lineNumber: 107,
+            lineNumber: 108,
             columnNumber: 7
         }, this);
     };
@@ -1597,7 +1546,7 @@ function ShopDetailsPage({ params }) {
         children: renderContent()
     }, void 0, false, {
         fileName: "[project]/Frontend-Dev/main-parent/packages/admin-panel/src/app/shops/[id]/page.tsx",
-        lineNumber: 188,
+        lineNumber: 189,
         columnNumber: 5
     }, this);
 }

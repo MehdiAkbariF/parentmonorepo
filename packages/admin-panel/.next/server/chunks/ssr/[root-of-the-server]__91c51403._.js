@@ -614,11 +614,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 // داده‌های ثابت و مختص این لی‌آوت (بدون تغییر)
 const menuItems = [
     {
-        label: "فروشگاه‌ها",
+        label: "گارانتی",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaStore"],
         submenu: [
             {
-                href: "/shops",
+                href: "/warranty",
                 label: "لیست فروشگاه‌ها",
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaListAlt"]
             },
@@ -747,7 +747,7 @@ const YadakchiAdminLayout = ({ children, currentPath, renderLink })=>{
         document.documentElement.lang = 'fa';
     }, []); // فقط یک بار در ابتدا اجرا می‌شود
     const sidebarProps = {
-        appName: "پنل یدکچی",
+        appName: "پنل یدکی ران",
         logo: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Frontend$2d$Dev$2f$main$2d$parent$2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$0_react$2d$dom$40$19$2e$1$2e$_b13a0a4285dbe16cf3c4aa2d431c8eb3$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsx"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaShieldAlt"], {}),
         menuItems: menuItems,
         footerItems: footerItems,
@@ -807,6 +807,7 @@ function createApiClient(baseUrl, getToken) {
         const response = await fetch(url, {
             method,
             headers: finalHeaders,
+            // ✨ حالا body برای DELETE هم ارسال می‌شود
             body: method !== 'GET' && body ? isFormData ? body : JSON.stringify(body) : undefined
         });
         if (!response.ok) {
@@ -818,7 +819,7 @@ function createApiClient(baseUrl, getToken) {
         if (response.status === 204) return null;
         return response.json();
     };
-    // ✨ --- تغییرات کلیدی در اینجا هستند ---
+    // ✨ --- تغییر کلیدی در اینجا است ---
     return {
         get: (endpoint, options)=>request('GET', endpoint, options),
         post: (endpoint, options)=>request('POST', endpoint, options),

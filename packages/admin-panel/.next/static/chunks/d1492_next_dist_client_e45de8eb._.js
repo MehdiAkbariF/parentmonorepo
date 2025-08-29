@@ -3242,6 +3242,10 @@ function AppContainer(param) {
                                                 "hostname": ("TURBOPACK compile-time value", "api.yadakchi.com")
                                             }),
                                             ("TURBOPACK compile-time value", {
+                                                "protocol": ("TURBOPACK compile-time value", "http"),
+                                                "hostname": ("TURBOPACK compile-time value", "localhost")
+                                            }),
+                                            ("TURBOPACK compile-time value", {
                                                 "protocol": ("TURBOPACK compile-time value", "https"),
                                                 "hostname": ("TURBOPACK compile-time value", "i.pravatar.cc")
                                             })

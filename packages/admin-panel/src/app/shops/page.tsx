@@ -14,8 +14,8 @@ import {
   type SelectOption,
 } from "@my-ds/design-system";
 
-// ۲. وارد کردن سرویس API و تایپ‌های مربوط به داده‌ها
-import { getShops, type Shop, type PaginatedResponse } from "../../services/shopsService";
+import { type Shop, type PaginatedResponse } from "../../services/api/types";
+import { getShops } from "@/services/shopsService";
 
 // ۳. وارد کردن ابزارهای کمکی و داده‌های فیلتر
 import { translateStatus } from "../../utils/translations";

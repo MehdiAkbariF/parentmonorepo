@@ -193,6 +193,15 @@
   display: inline-flex;
 }
 
+.label--truncate {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  max-width: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+
 .header {
   background-color: var(--color-bg-surface);
   border-bottom: 1px solid var(--color-border-primary);
@@ -1734,12 +1743,12 @@
   height: 24px;
   transition: transform .2s;
   display: inline-block;
-  transform: translateX(-5px);
+  transform: translateX(-29px);
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .06);
 }
 
 .toggle-switch--enabled .toggle-switch__knob {
-  transform: translateX(26px);
+  transform: translateX(0);
 }
 
 .entity-header {
@@ -1770,18 +1779,17 @@
 }
 
 .button {
+  border: 1px solid var(--color-border-primary);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: .375rem;
-  justify-content: center;
   align-items: center;
-  padding: .75rem 1.25rem;
-  font-size: 1rem;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  font-size: .875rem;
   font-weight: 500;
-  transition: all .2s ease-in-out;
+  transition: all .2s;
   display: inline-flex;
 }
 
@@ -1954,25 +1962,25 @@
   }
 }
 
-@keyframes slideInUp {
+@keyframes scaleIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -45%);
+    transform: scale(.95);
   }
 
   to {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: scale(1);
   }
 }
 
 .modal__overlay {
   z-index: 9999;
-  background-color: rgba(33, 37, 41, .7);
+  background-color: rgba(33, 37, 41, .6);
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  animation: .15s ease-out forwards fadeIn;
+  animation: .2s ease-out forwards fadeIn;
   display: flex;
   position: fixed;
   top: 0;
@@ -1988,7 +1996,7 @@
   width: 100%;
   max-width: 500px;
   max-height: 90vh;
-  animation: .2s cubic-bezier(.1, .9, .2, 1) forwards slideInUp;
+  animation: .2s cubic-bezier(.1, .9, .2, 1) forwards scaleIn;
   display: flex;
   box-shadow: 0 25px 50px rgba(0, 0, 0, .25);
 }
@@ -2019,6 +2027,82 @@
   gap: .75rem;
   padding: 1rem 1.5rem;
   display: flex;
+}
+
+.modal.form-modal .modal__footer {
+  justify-content: space-between;
+}
+
+.form-modal__body form {
+  flex-direction: column;
+  gap: 1.25rem;
+  display: flex;
+}
+
+@media (max-width: 640px) {
+  .form-modal__body form {
+    gap: 1rem;
+  }
+}
+
+.form-modal__body .form-field__helper-text {
+  color: var(--color-text-secondary);
+  margin-top: .5rem;
+  font-size: .75rem;
+}
+
+.form-modal__body .form-field__helper-text:not(:-webkit-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+  padding-left: .25rem;
+}
+
+.form-modal__body .form-field__helper-text:not(:-moz-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+  padding-left: .25rem;
+}
+
+.form-modal__body .form-field__helper-text:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+  padding-left: .25rem;
+}
+
+.form-modal__body .form-field__helper-text:-webkit-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+  padding-right: .25rem;
+}
+
+.form-modal__body .form-field__helper-text:-moz-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+  padding-right: .25rem;
+}
+
+.form-modal__body .form-field__helper-text:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+  padding-right: .25rem;
+}
+
+.form-modal__body .form-field__error-text {
+  color: var(--color-utility-error);
+  margin-top: .5rem;
+  font-size: .75rem;
+}
+
+.form-modal__body .form-field__error-text:not(:-webkit-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+  padding-left: .25rem;
+}
+
+.form-modal__body .form-field__error-text:not(:-moz-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+  padding-left: .25rem;
+}
+
+.form-modal__body .form-field__error-text:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+  padding-left: .25rem;
+}
+
+.form-modal__body .form-field__error-text:-webkit-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+  padding-right: .25rem;
+}
+
+.form-modal__body .form-field__error-text:-moz-any(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+  padding-right: .25rem;
+}
+
+.form-modal__body .form-field__error-text:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+  padding-right: .25rem;
 }
 
 /*# sourceMappingURL=Frontend-Dev_main-parent_packages_design-system_dist_index_css_bad6b30c._.single.css.map*/

@@ -14,7 +14,8 @@ import {
   Button,
 } from "@my-ds/design-system";
 
-import { getShopById, confirmShopRegistration, confirmFinalShopStatus, type Shop } from "../../../services/shopsService";
+import { getShopById, confirmShopRegistration, confirmFinalShopStatus, } from "../../../services/shopsService";
+import { Shop } from "@/services/api/types";
 import { translateStatus } from "../../../utils/translations";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
